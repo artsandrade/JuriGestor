@@ -1,0 +1,24 @@
+{
+  "name": "jurigestor",
+  "version": "1.0.0",
+  "description": "trabalho interdisciplicar 2019",
+  "main": "index.js",
+  "scripts": {"compile:sass": "node-sass sass/main.scss css/style.css -w"},
+  "repository": {
+    "type": "git",
+    "url": "\u0016\u001b[2~\u001b[2~\u0016https://github.com/artsandrade/JuriGestor.git"
+  },
+  "keywords": [
+    "JuriGestor"
+  ],
+  "author": "Arthur, Pedro, Gabriel",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
+    "node-sass": "^4.13.0"
+  }
+}
