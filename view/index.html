@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="shortcut icon" type="image/png" href="../img/logomarcamin.png">
+
+    <title>Jurigestor - Login</title>
+</head>
+
+<body>
+    <div class="login-reg-panel">
+        <div class="register-info-box">
+            <div>
+                <img src="../img/logomarca.png" alt="" class="img-logo">
+            </div>
+        </div>
+        <div class="white-panel">
+            <div class="login-show text-center">
+                <h2 class="mb-4 font-size">Faça login</h2>
+                <form action="../funcoes/verificaLogin.php" method="post">
+                    <input type="text" placeholder="Nome de Usuario" name="user">
+                    <input type="password" placeholder="Senha" name="pass">
+                    <button class="btn btn-blue btn-big btn-block">Entrar</button>
+                    <a href="">Esqueceu sua senha?</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="../js/login.js"></script>
+    </footer>
+</body>
+
+</html>
