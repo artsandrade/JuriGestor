@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="shortcut icon" type="image/png" href="../img/logomarcamin.png">
 
-    <title>Jurigestor - Login</title>
+    <title>JuriGestor - Login</title>
 </head>
 
 <body>
@@ -23,10 +23,10 @@
         <div class="white-panel">
             <div class="login-show text-center">
                 <h2 class="mb-4 font-size">Faça login</h2>
-                <form action="../funcoes/verificaLogin.php" method="post">
+                <form action="../model/verificaLogin.php" method="post">
                     <input type="text" placeholder="Nome de Usuario" name="user">
                     <input type="password" placeholder="Senha" name="pass">
-                    <button class="btn btn-blue btn-big btn-block">Entrar</button>
+                    <button class="btn btn-blue btn-big btn-block" name="btn-entrar">Entrar</button>
                     <a href="">Esqueceu sua senha?</a>
                 </form>
             </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 27-Out-2019 às 20:56
+-- Generation Time: 30-Out-2019 às 14:52
 -- Versão do servidor: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -44,7 +44,7 @@ CREATE TABLE `advogado_contraria` (
   `id` int(5) NOT NULL,
   `nome` varchar(60) NOT NULL,
   `oab` varchar(15) DEFAULT NULL,
-  `telefone` int(10) DEFAULT NULL,
+  `telefone` varchar(10) DEFAULT NULL,
   `email` varchar(60) DEFAULT NULL,
   `processo_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -5685,7 +5685,7 @@ INSERT INTO `cidade` (`id`, `nome`, `estado_id`) VALUES
 CREATE TABLE `cliente` (
   `id` int(5) NOT NULL,
   `nome` varchar(60) NOT NULL,
-  `documento` int(14) NOT NULL,
+  `documento` varchar(14) NOT NULL,
   `rg` varchar(20) DEFAULT NULL,
   `orgao_emissor` varchar(10) DEFAULT NULL,
   `dt_nascimento` date DEFAULT NULL,
@@ -5695,17 +5695,17 @@ CREATE TABLE `cliente` (
   `filiacao1` varchar(60) DEFAULT NULL,
   `filiacao2` varchar(60) DEFAULT NULL,
   `endereco` varchar(60) NOT NULL,
-  `num` int(10) NOT NULL,
+  `num` varchar(10) NOT NULL,
   `complemento` varchar(45) DEFAULT NULL,
   `bairro` varchar(45) NOT NULL,
   `cidade_id` int(5) NOT NULL,
-  `cep` int(8) NOT NULL,
-  `telefone` int(10) NOT NULL,
-  `celular` int(11) DEFAULT NULL,
-  `recado` int(10) DEFAULT NULL,
+  `cep` varchar(8) NOT NULL,
+  `telefone` varchar(10) NOT NULL,
+  `celular` varchar(11) DEFAULT NULL,
+  `recado` varchar(10) DEFAULT NULL,
   `email` varchar(60) DEFAULT NULL,
   `razao_social` varchar(60) DEFAULT NULL,
-  `ie` int(20) DEFAULT NULL,
+  `ie` varchar(20) DEFAULT NULL,
   `observarcao` tinytext,
   `escritorio_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -5731,13 +5731,20 @@ CREATE TABLE `cliente_processo` (
 CREATE TABLE `escritorio` (
   `id` int(5) NOT NULL,
   `nome` varchar(45) NOT NULL,
-  `documento` int(15) NOT NULL,
+  `documento` varchar(15) NOT NULL,
   `responsavel` varchar(60) NOT NULL,
-  `telefone` int(10) NOT NULL,
-  `celular` int(11) DEFAULT NULL,
+  `telefone` varchar(10) NOT NULL,
+  `celular` varchar(11) DEFAULT NULL,
   `email` varchar(60) NOT NULL,
   `ativo` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `escritorio`
+--
+
+INSERT INTO `escritorio` (`id`, `nome`, `documento`, `responsavel`, `telefone`, `celular`, `email`, `ativo`) VALUES
+(1, 'M Souza Advogados', '000', 'Manoel', '3434215011', '34934215011', 'msouzaadvogados@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -5795,6 +5802,13 @@ CREATE TABLE `nivel_acesso` (
   `escritorio_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `nivel_acesso`
+--
+
+INSERT INTO `nivel_acesso` (`id`, `tipo`, `escritorio_id`) VALUES
+(1, 'Administrador', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -5822,7 +5836,7 @@ CREATE TABLE `processo` (
   `nome_acao` varchar(45) NOT NULL,
   `valor` decimal(9,2) DEFAULT NULL,
   `honorario` decimal(9,2) DEFAULT NULL,
-  `link` varchar(100) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
   `observacao` tinytext,
   `tribunal_id` int(5) NOT NULL,
   `cidade_id` int(5) NOT NULL,
@@ -5839,14 +5853,14 @@ CREATE TABLE `processo` (
 CREATE TABLE `responsavel_pj` (
   `id` int(5) NOT NULL,
   `nome` varchar(60) NOT NULL,
-  `cpf` int(11) NOT NULL,
+  `cpf` varchar(11) NOT NULL,
   `rg` varchar(20) NOT NULL,
   `orgao_emissor` varchar(10) NOT NULL,
   `dt_nascimento` date DEFAULT NULL,
   `estado_civil` varchar(15) NOT NULL,
   `cargo` varchar(45) NOT NULL,
-  `telefone` int(10) NOT NULL,
-  `celular` int(11) DEFAULT NULL,
+  `telefone` varchar(10) NOT NULL,
+  `celular` varchar(11) DEFAULT NULL,
   `email` varchar(60) DEFAULT NULL,
   `filiacao1` varchar(60) NOT NULL,
   `filiacao2` varchar(60) DEFAULT NULL,
@@ -5861,7 +5875,7 @@ CREATE TABLE `responsavel_pj` (
 
 CREATE TABLE `tipo_acao` (
   `id` int(5) NOT NULL,
-  `nome` varchar(45) NOT NULL,
+  `nome` varchar(100) NOT NULL,
   `escritorio_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -5886,9 +5900,9 @@ CREATE TABLE `tribunal` (
 CREATE TABLE `usuario` (
   `id` int(5) NOT NULL,
   `nome` varchar(60) NOT NULL,
-  `cpf` int(11) NOT NULL,
-  `telefone` int(10) NOT NULL,
-  `celular` int(11) DEFAULT NULL,
+  `cpf` varchar(11) NOT NULL,
+  `telefone` varchar(10) NOT NULL,
+  `celular` varchar(11) DEFAULT NULL,
   `email` varchar(60) NOT NULL,
   `login` varchar(45) NOT NULL,
   `senha` varchar(45) NOT NULL,
@@ -5898,6 +5912,13 @@ CREATE TABLE `usuario` (
   `escritorio_id` int(5) NOT NULL,
   `nivel_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `nome`, `cpf`, `telefone`, `celular`, `email`, `login`, `senha`, `oab`, `advogado`, `ativo`, `escritorio_id`, `nivel_id`) VALUES
+(1, 'Administrador', '0', '0', '0', '0', 'admin', '21232f297a57a5a743894a0e4a801fc3', '0', 0, 1, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -6089,7 +6110,7 @@ ALTER TABLE `cliente_processo`
 -- AUTO_INCREMENT for table `escritorio`
 --
 ALTER TABLE `escritorio`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `estado`
@@ -6101,7 +6122,7 @@ ALTER TABLE `estado`
 -- AUTO_INCREMENT for table `nivel_acesso`
 --
 ALTER TABLE `nivel_acesso`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `parte_contraria`
@@ -6137,7 +6158,7 @@ ALTER TABLE `tribunal`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
