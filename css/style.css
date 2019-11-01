@@ -81,8 +81,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  position: relative;
-  overflow-y: hidden; }
+  position: relative; }
 
 a {
   text-decoration: none;
