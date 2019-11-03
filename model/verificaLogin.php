@@ -9,17 +9,30 @@ if(empty($_POST['user']) || empty($_POST['pass'])){
 $user = mysqli_real_escape_string($conn, $_POST['user']);
 $pass = mysqli_real_escape_string($conn, $_POST['pass']);
 
-$query = "select login, senha from usuario where login= '{$user}' and senha= md5('{$pass}')";
+$query = "SELECT * FROM usuario WHERE login = '{$user}' and senha= md5('{$pass}')";
 $result = mysqli_query($conn, $query);
+$dados = mysqli_fetch_array($result);
 $row = mysqli_num_rows($result);
 
 if($row==1){
+    session_start();
+    $_SESSION['id_user'] = $dados['id'];
     $_SESSION['user'] = $user;
-    header('Location: ../view/painel.html');
-    exit;
+    $_SESSION['advogado'] = $dados['advogado'];
+    $_SESSION['ativo'] = $dados['ativo'];
+    $_SESSION['escritorio_id'] = $dados['escritorio_id'];
+    $_SESSION['nivel_id'] = $dados['nivel_id'];
+
+    if($_SESSION['ativo']==1){
+        header('Location: ../view/painel.html');
+        exit;
+    }
+    else{
+        header('Location: ../view/index.html');
+    }
+    
 }
 else{
     header('Location: ../view/index.html');
 }
-
 ?>
