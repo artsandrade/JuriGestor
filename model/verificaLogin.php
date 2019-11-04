@@ -2,7 +2,7 @@
 include_once("conexao.php");
 
 if(empty($_POST['user']) || empty($_POST['pass'])){
-    header('Location: ../view/index.html');
+    header('Location: index.php');
     exit();
 }
 
@@ -24,15 +24,15 @@ if($row==1){
     $_SESSION['nivel_id'] = $dados['nivel_id'];
 
     if($_SESSION['ativo']==1){
-        header('Location: ../view/painel.html');
+        header('Location: ../view/painel.php');
         exit;
     }
     else{
-        header('Location: ../view/index.html');
+        header('Location: index.php');
     }
     
 }
 else{
-    header('Location: ../view/index.html');
+    header('Location: index.php');
 }
 ?>
