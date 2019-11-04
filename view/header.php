@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
 
@@ -154,86 +154,17 @@
                     <li class="breadcrumb-item">
                         <a href="index.html">Painel administrativo</a>
                     </li>
-                    <li class="breadcrumb-item active">Página atual</li>
+                    <li class="breadcrumb-item active">Tipo da ação</li>
                 </ol>
-
-                <!-- Page Content -->
-                <!-- <h1>Blank Page</h1>
-        <hr>
-        <p>This is a great starting point for new custom pages.</p> -->
-                <h1 class="">Tribunal</h1>
-                <form>
-                    <div class="form-row mt-5">
-                        <div class="form-group col-md-8 col-sm-12 col-12">
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="Nome da ação">
-                        </div>
-                        <div class="col-md-2 col-sm-6 col-6">
-                            <button type="submit" class="btn btn-primary btn-block">Pesquisar</button>
-                        </div>
-                        <div class="col-md-2 col-sm-6 col-6">
-                            <button type="submit" class="btn btn-primary btn-block">Incluir</button>
-                        </div>
-                </form>
-                <div class="table-responsive">
-                    <table class="table table-hover  mt-5 rounded">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="bg-dark text-light">Nome</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Ação Trabalhista</td>
-                            </tr>
-                            <tr>
-                                <td>Ação Ordinária</td>
-                            </tr>
-                            <tr>
-                                <td>Lorem ipsum</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-
-
-
-
-
-
-
+                
             </div>
             <!-- /.container-fluid -->
         </div>
         <!-- /.content-wrapper -->
 
     </div>
-    <!-- /#wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <!-- Bootstrap core JavaScript-->
     <script src="../node_modules/jquery/dist/jquery.js"></script>
