@@ -15,10 +15,15 @@
 
   <!-- Custom fonts for this template-->
   <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css">
+  <link rel="stylesheet" href="../css/input.css">
+  <link rel="stylesheet" href="../node_modules/bootstrap-fileinput/css/fileinput.css">
+  
 
   <!-- Custom styles for this template-->
   <link href="../css/sb-admin.min.css" rel="stylesheet">
+<script>
 
+</script>
 </head>
 
 <body id="page-top">
@@ -100,7 +105,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <h6 class="dropdown-header">Opções:</h6>
-          <a class="dropdown-item" href="#">Cadastrar</a>
+          <a class="dropdown-item" href="atendimentoCadastrar.php">Cadastrar</a>
           <a class="dropdown-item" href="#">Consultar</a>
           <div class="dropdown-divider"></div>
         </div>
@@ -126,7 +131,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <h6 class="dropdown-header">Opções:</h6>
-          <a class="dropdown-item" href="#">Cadastrar</a>
+          <a class="dropdown-item" href="../model/atendimentoCadastrar.php">Cadastrar</a>
           <a class="dropdown-item" href="#">Consultar</a>
           <div class="dropdown-divider"></div>
         </div>

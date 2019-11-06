@@ -3,7 +3,7 @@ include_once("../model/conexao.php");
 session_start();
 
 if (!isset($_SESSION['user']) && !isset($_SESSION['pass'])) {
-    header('Location: index.html');
+    header('Location: ../index.php');
 }
 
 ?>
@@ -43,10 +43,10 @@ include('header.php');
         </form>
         <div class="table-responsive">
             <table class="table table-hover  mt-5 rounded">
-                <thead>
+                <thead class="thead-dark">
                     <tr>
-                        <th scope="col" class="bg-dark text-light">Nome</th>
-                        <th width="40" scope="col" class="bg-dark text-light"></th>
+                        <th scope="col" >Nome</th>
+                        <th width="40" scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>

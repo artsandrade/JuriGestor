@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "trabalho interdisciplicar 2019",
   "main": "index.js",
-  "scripts": {"compile:sass": "node-sass sass/main.scss css/style.css -w"},
+  "scripts": {
+    "compile:sass": "node-sass sass/main.scss css/style.css -w"
+  },
   "repository": {
     "type": "git",
     "url": "\u0016\u001b[2~\u001b[2~\u0016https://github.com/artsandrade/JuriGestor.git"
@@ -15,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "bootstrap-fileinput": "^5.0.6",
     "jquery": "^3.4.1"
   },
   "devDependencies": {
