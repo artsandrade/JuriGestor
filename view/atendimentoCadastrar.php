@@ -37,13 +37,52 @@ include('header.php');
                     <label for="inputRelato">Relato</label>
                     <textarea class="form-control" id="inputRelato" rows="4"></textarea>
                 </div>
-        </form>
-        <form>
-            <div class="form-group mt-5">
-                <input id="input-b3" name="input-b3[]" type="file" class="file" multiple data-show-upload="false" data-show-caption="true" data-msg-placeholder="Select {files} for upload...">
-            </div>
-        </form>
 
+                <div class="form-group col-md-12 col-sm-12 col-12">
+                    <div class="file-loading">
+                        <input id="input-44" name="input44[]" type="file" multiple>
+                    </div>
+                </div>
+                <div class="form-group mt-5 mr-auto">
+                    <button class="btn btn-danger">Limpar</button>
+                </div>
+                <div class="form-group mt-5">
+                    <button class="btn btn-primary">Cadastrar</button>
+                </div>
+            </div>
+    </div>
+    </form>
+
+
+
+    <script>
+        $(document).ready(function () {
+            $("#input-44").fileinput({
+                uploadUrl: "../model/upload.php",
+                maxFilePreviewSize: 10240,
+                language: 'pt-BR',
+                theme: 'fas',
+                enableResumableUpload: false,
+                // uploadExtraData: {
+                //     'uploadToken': 'SOME-TOKEN', // para controle / segurança de acesso  
+                // }
+                maxFileCount: 5,
+                showCancel: true,
+                initialPreviewAsData: true,
+                deleteUrl: "http://localhost/file-delete.php"
+            }).on('fileuploaded', function (event, previewId, index, fileId) {
+                console.log('File Uploaded', 'ID: ' + fileId + ', Thumb ID: ' + previewId);
+            }).on('fileuploaderror', function (event, data, msg) {
+                console.log('File Upload Error', 'ID: ' + data.fileId + ', Thumb ID: ' + data.previewId);
+            }).on('filebatchuploadcomplete', function (event, preview, config, tags, extraData) {
+                console.log('File Batch Uploaded', preview, config, tags, extraData);
+            });
+        });
+    </script>
+
+    </form>
+
+    <!-- 
         <div class="table-responsive">
             <table class="table table-hover mt-5 rounded">
                 <thead class="thead-dark">
@@ -65,14 +104,14 @@ include('header.php');
 
                 </tbody>
             </table>
-        </div>
+        </div> -->
 
-        <!-- Page Content -->
-        <!-- <h1>Blank Page</h1>
+    <!-- Page Content -->
+    <!-- <h1>Blank Page</h1>
         <hr>
         <p>This is a great starting point for new custom pages.</p> -->
-    </div>
-    <!-- /.container-fluid -->
+</div>
+<!-- /.container-fluid -->
 </div>
 <!-- /.content-wrapper -->
 </div>
