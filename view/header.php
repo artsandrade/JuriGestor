@@ -101,7 +101,7 @@
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <h6 class="dropdown-header">Opções:</h6>
           <a class="dropdown-item" href="atendimentoCadastrar.php">Cadastrar</a>
-          <a class="dropdown-item" href="#">Consultar</a>
+          <a class="dropdown-item" href="atendimentoConsultar.php">Consultar</a>
           <div class="dropdown-divider"></div>
         </div>
       </li>
