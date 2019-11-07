@@ -1,4 +1,9 @@
 <?php
+include_once("../model/conexao.php");
+session_start();
+?>
+
+<?php
 
 include('header.php');
 
@@ -20,17 +25,21 @@ include('header.php');
 
             <div class="form-row mt-5">
                 <div class="form-group col-md-6 col-sm-12 col-12">
-                    <label for="inputCpfCliente">CPF</label>
-                    <input class="form-control" id="inputCpfCliente" placeholder="" name="inputCpfCliente">
+                    <label for="inputCliente">Cliente</label>
+                    <input class="form-control" id="inputCliente" placeholder="" name="inputCliente">
 
                 </div>
                 <div class="form-group col-md-6 col-sm-12 col-12">
                     <label for="comboTipoAcao">Tipo da ação</label>
                     <select class="form-control" id="comboTipoAcao">
-                        <option>Ação Trabalhista</option>
-                        <option>Ação Teste</option>
-                        <option>Outra ação</option>
-                        <option>Mais uma ação</option>
+                        <?php
+                        include("../model/conexao.php");
+                        include("../model/tipo_acao/consulta.php");
+                        global $result;
+                        while ($dados = mysqli_fetch_array($result)) :
+                        ?>
+                            <option><?php echo $dados['nome']; ?></option>
+                        <?php endwhile; ?>
                     </select>
                 </div>
                 <div class="form-group col-md-12 col-sm-12 col-12">
@@ -56,7 +65,7 @@ include('header.php');
 
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $("#input-44").fileinput({
                 uploadUrl: "../model/upload.php",
                 maxFilePreviewSize: 10240,
@@ -70,11 +79,11 @@ include('header.php');
                 showCancel: true,
                 initialPreviewAsData: true,
                 deleteUrl: "http://localhost/file-delete.php"
-            }).on('fileuploaded', function (event, previewId, index, fileId) {
+            }).on('fileuploaded', function(event, previewId, index, fileId) {
                 console.log('File Uploaded', 'ID: ' + fileId + ', Thumb ID: ' + previewId);
-            }).on('fileuploaderror', function (event, data, msg) {
+            }).on('fileuploaderror', function(event, data, msg) {
                 console.log('File Upload Error', 'ID: ' + data.fileId + ', Thumb ID: ' + data.previewId);
-            }).on('filebatchuploadcomplete', function (event, preview, config, tags, extraData) {
+            }).on('filebatchuploadcomplete', function(event, preview, config, tags, extraData) {
                 console.log('File Batch Uploaded', preview, config, tags, extraData);
             });
         });
