@@ -92,7 +92,6 @@
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <a class="dropdown-item" href="atendimentoCadastrar.php">Cadastrar</a>
           <a class="dropdown-item" href="atendimentoConsultar.php">Consultar</a>
-          <div class="dropdown-divider"></div>
         </div>
       </li>
       <li class="nav-item dropdown">
