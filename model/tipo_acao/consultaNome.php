@@ -1,13 +1,13 @@
 <?php
-
+session_start();
 include_once("conexao.php");
 
 if(isset($_POST['btn-consulta'])){
-    session_start();
+    
     $id = mysqli_real_escape_string($conn, $_SESSION['escritorio_id']);
-    $nome = mysqli_real_escape_string($conn, $_POST['nome']);
+    $nome = mysqli_real_escape_string($conn, $_POST['nomeAcao']);
 
-    $query = "SELECT * FROM tipo_acao WHERE nome like '%{$nome}%', escritorio_id = '{$id}'";
+    $query = "SELECT * FROM tipo_acao WHERE nome LIKE '%{$nome}%' AND escritorio_id = '{$id}'";
     $result = mysqli_query($conn, $query);
     
     if($result){

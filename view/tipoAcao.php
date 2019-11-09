@@ -35,9 +35,11 @@ include('header.php');
                 <div class="col-md-2 col-sm-6 col-6">
                     <button type="submit" name="btn-insere" class="btn btn-primary btn-block">Incluir</button>
                 </div>
+            </div>
         </form>
-        <div class="table-responsive">
-            <table class="table table-hover  mt-5 rounded">
+        
+        <div class="table-responsive" id="tabelaTipoAcao">
+            <table class="table table-hover  mt-5 rounded" >
                 <thead>
                     <tr>
                         <th scope="col" class="bg-dark text-light">Nome</th>
@@ -51,12 +53,24 @@ include('header.php');
                     include("../model/tipo_acao/consulta.php");
                     global $result;
                     while ($dados = mysqli_fetch_array($result)) :
-                        ?>
+                    ?>
                         <tr>
                             <td><?php echo $dados['nome']; ?></td>
                             <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAcaoAlterar<?php echo $dados['id']; ?>" data-whatever="<?php echo $dados['nome']; ?>"><i class="fas fa-pencil-alt"></i></td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAcao<?php echo $dados['id']; ?>"><i class="fas fa-trash-alt"></i></td>
+                            <?php
+                                $id = mysqli_real_escape_string($conn, $dados['id']);
+                                $query1 = "SELECT * FROM atendimento WHERE atendimento.tipoacao_id = '$id'";
+                                $result1 = mysqli_query($conn, $query1);
 
+                                $query2 = "SELECT * FROM processo WHERE processo.tipo_acao_id = '$id'";
+                                $result2 = mysqli_query($conn, $query2);
+                                    if (mysqli_num_rows($result1)>0 or mysqli_num_rows($result2)>0):?>
+                                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAcaoNao<?php echo $dados['id']; ?>"><i class="fas fa-trash-alt"></i></td>
+                                <?php
+                                    else:?>
+                                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAcao<?php echo $dados['id']; ?>"><i class="fas fa-trash-alt"></i></td>
+                                    <?php endif; ?>                            
+                                    
                             <!-- Modal Exclusão-->
                             <div class="modal fade" id="modalAcao<?php echo $dados['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -113,6 +127,28 @@ include('header.php');
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                                             </div>
                                         </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal Não Exclusão-->
+                            <div class="modal fade" id="modalAcaoNao<?php echo $dados['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Impossível excluir</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Desculpe, mas o tipo da ação "<?php echo $dados['nome']; ?>" está sendo utilizado em um atendimento ou processo.
+                                            Para que você possa excluir "<?php echo $dados['nome']; ?>"", é necessário primeiramente remover os cadastros que estão
+                                            vinculados!</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

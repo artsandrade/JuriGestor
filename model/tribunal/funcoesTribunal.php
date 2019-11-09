@@ -17,22 +17,20 @@ if(isset($_POST['btn-insere'])){
     }
 }
 else{
-    if(isset($_POST['btn-remove'])){
-        if(!isset($_SESSION)) 
-        { 
-        session_start(); 
-        }
-
-        $id = mysqli_real_escape_string($conn, $_POST['id']);
-
-        $query = "DELETE FROM tribunal WHERE id = '$id'";
+    if(isset($_POST['btn-consulta'])){
+    
+        $id = mysqli_real_escape_string($conn, $_SESSION['escritorio_id']);
+        $nome = mysqli_real_escape_string($conn, $_POST['nomeTribunal']);
+    
+        $query = "SELECT * FROM tribunal WHERE nome LIKE '%{$nome}%' AND escritorio_id = '{$id}'";
         $result = mysqli_query($conn, $query);
+        
         if($result){
             header('Location: ../../view/tribunal.php?sucesso');
         }
-    }
-    else{
-        header('Location: ../../view/tribunal.php');
+        else{
+            header('Location: ../../view/tribunal.php?erro');
+        }
     }
 }
 ?>

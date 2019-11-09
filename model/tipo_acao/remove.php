@@ -8,8 +8,8 @@ if(isset($_POST['btn-remove'])){
 
         $query = "DELETE FROM tipo_acao WHERE id = '$id'";
         $result = mysqli_query($conn, $query);
-        
-            header('Location: ../../view/tipoAcao.php?sucesso');
+
+        header('Location: ../../view/tipoAcao.php?sucesso');
         
 } 
 ?>
