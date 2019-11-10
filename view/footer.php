@@ -10,7 +10,7 @@
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Selecione sair para encerrar sua sessão</div>
+        <div class="modal-body">Selecione sair para encerrar sua sessão.</div>
         <div class="modal-footer text-justify">
           <form action="../model/efetuaLogout.php" method="POST">
             <button class="btn btn-secondary mr-auto" type="button" data-dismiss="modal">Voltar</button>

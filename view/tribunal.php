@@ -1,11 +1,9 @@
 <?php
 include_once("../model/conexao.php");
 session_start();
-
 if (!isset($_SESSION['user']) && !isset($_SESSION['pass'])) {
-    header('Location: ../index.php');
+    header('Location: ../view/index.html');
 }
-
 ?>
 
 <?php
@@ -19,7 +17,7 @@ include('header.php');
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="index.html">Painel administrativo</a>
+                <a href="painel.php">Painel administrativo</a>
             </li>
             <li class="breadcrumb-item active">Tribunal</li>
         </ol>
@@ -62,12 +60,9 @@ include('header.php');
                             <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalTribunalAlterar<?php echo $dados['id']; ?>" data-whatever="<?php echo $dados['nome']; ?>" title="Alterar"><i class="fas fa-pencil-alt"></i></td>
                             <?php
                                 $id = mysqli_real_escape_string($conn, $dados['id']);
-                                $query1 = "SELECT * FROM atendimento WHERE atendimento.tipoacao_id = '$id'";
+                                $query1 = "SELECT * FROM processo WHERE processo.tribunal_id = '$id'";
                                 $result1 = mysqli_query($conn, $query1);
-
-                                $query2 = "SELECT * FROM processo WHERE processo.tipo_acao_id = '$id'";
-                                $result2 = mysqli_query($conn, $query2);
-                                    if (mysqli_num_rows($result1)>0 or mysqli_num_rows($result2)>0):?>
+                                    if (mysqli_num_rows($result1)>0):?>
                                         <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalTribunalNao<?php echo $dados['id']; ?>" title="Excluir"><i class="fas fa-trash-alt"></i></td>
                                 <?php
                                     else:?>
@@ -143,7 +138,7 @@ include('header.php');
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Desculpe, mas o tribunal "<?php echo $dados['nome']; ?>" está sendo utilizado em um atendimento ou processo.
+                                            <p>Desculpe, mas o tribunal "<?php echo $dados['nome']; ?>" está sendo utilizado em um processo.
                                             Para que você possa excluir "<?php echo $dados['nome']; ?>"", é necessário primeiramente remover os cadastros que estão
                                             vinculados!</p>
                                         </div>

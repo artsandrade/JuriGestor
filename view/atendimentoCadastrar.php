@@ -1,9 +1,4 @@
 <?php
-include_once("../model/conexao.php");
-session_start();
-?>
-
-<?php
 
 include('header.php');
 
@@ -15,9 +10,10 @@ include('header.php');
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="index.html">Painel administrativo</a>
+                <a href="painel.html">Painel administrativo</a>
             </li>
             <li class="breadcrumb-item active">Atendimentos</li>
+            <li class="breadcrumb-item active">Cadastrar</li>
         </ol>
 
         <h1>Cadastro de Atendimentos</h1>

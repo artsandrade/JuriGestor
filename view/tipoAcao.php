@@ -1,6 +1,9 @@
 <?php
 include_once("../model/conexao.php");
 session_start();
+if (!isset($_SESSION['user']) && !isset($_SESSION['pass'])) {
+    header('Location: ../view/index.html');
+}
 ?>
 
 <?php
@@ -14,7 +17,7 @@ include('header.php');
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="index.html">Painel administrativo</a>
+                <a href="painel.php">Painel administrativo</a>
             </li>
             <li class="breadcrumb-item active">Tipo da ação</li>
         </ol>
@@ -27,7 +30,7 @@ include('header.php');
         <form action="../model/tipo_acao/funcoesTipoAcao.php" method="POST">
             <div class="form-row mt-5">
                 <div class="form-group col-md-8 col-sm-12 col-12">
-                    <input type="form-control" class="form-control" name="nomeAcao" id="nomeAcao" placeholder="Nome da ação" required>
+                    <input type="form-control" class="form-control" name="nomeAcao" id="nomeAcao" placeholder="Nome do tipo da ação" required>
                 </div>
                 <div class="col-md-2 col-sm-6 col-6">
                     <button type="submit" name="btn-consulta" class="btn btn-primary btn-block">Pesquisar</button>
