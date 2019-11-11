@@ -1,3 +1,11 @@
+<script>
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+    $('.select2').select2();
+    
+});
+</script>
+
 <form action="" class="mt-5" id="pf" style="display: none;">
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -104,15 +112,12 @@
     </div>
     <div class="form-row mt-1">
         <div class="form-group col-md-8">
-            <label for="inputAdvogado">Advogados</label>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <input type="checkbox" aria-label="Chebox para permitir input text">
-                    </div>
-                </div>
-                <input type="text" class="form-control" id="inputAdvogado" value="Pedro Henrique" aria-label="Input text com checkbox">
-            </div>
+            <label for="inputAdvogado">Advogado</label>
+            <select class="js-example-basic-multiple form-control select2" id="inputAdvogado"name="avogados[]"style="width: 100%;"multiple="multiple">
+                <option value="AL">Alabama</option>
+                <option value="Pedrinho delas">Pedro</option>
+                <option value="WY">Wyoming</option>
+            </select>
         </div>
     </div>
     <div class="form-row mt-1">
