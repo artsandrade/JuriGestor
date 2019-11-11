@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 30-Out-2019 às 14:52
+-- Generation Time: 11-Nov-2019 às 16:20
 -- Versão do servidor: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -33,6 +33,13 @@ CREATE TABLE `advogado` (
   `usuario_id` int(5) NOT NULL,
   `cliente_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `advogado`
+--
+
+INSERT INTO `advogado` (`id`, `usuario_id`, `cliente_id`) VALUES
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -89,8 +96,16 @@ CREATE TABLE `atendimento` (
   `relato` text NOT NULL,
   `cliente_id` int(5) NOT NULL,
   `usuario_id` int(5) NOT NULL,
-  `escritorio_id` int(5) NOT NULL
+  `escritorio_id` int(5) NOT NULL,
+  `tipoacao_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `atendimento`
+--
+
+INSERT INTO `atendimento` (`id`, `dt`, `relato`, `cliente_id`, `usuario_id`, `escritorio_id`, `tipoacao_id`) VALUES
+(2, '2019-11-10', 'teste teste teste teste teste teste teste teste teste teste teste teste teste teste\r\nteste teste teste teste teste teste teste teste teste teste teste teste teste teste\r\nteste teste teste teste teste teste teste teste teste teste teste teste teste teste\r\nteste teste teste teste teste teste teste', 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -5710,6 +5725,13 @@ CREATE TABLE `cliente` (
   `escritorio_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `cliente`
+--
+
+INSERT INTO `cliente` (`id`, `nome`, `documento`, `rg`, `orgao_emissor`, `dt_nascimento`, `estado_civil`, `profissao`, `ctps`, `filiacao1`, `filiacao2`, `endereco`, `num`, `complemento`, `bairro`, `cidade_id`, `cep`, `telefone`, `celular`, `recado`, `email`, `razao_social`, `ie`, `observarcao`, `escritorio_id`) VALUES
+(1, 'Arthur Souza Andrade', '555555', '55555', 'sspsp', '1999-11-24', 'solteiro', 'estagiario', '123', 'adriana', 'andre', 'campina verde', '618', 'sobrado', 'centro', 1869, '38200000', '3434215011', '16981946352', '1681946352', 'arthur@teste.com', NULL, NULL, 'teste', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -5841,8 +5863,16 @@ CREATE TABLE `processo` (
   `tribunal_id` int(5) NOT NULL,
   `cidade_id` int(5) NOT NULL,
   `tipo_acao_id` int(5) NOT NULL,
-  `escritorio_id` int(5) NOT NULL
+  `escritorio_id` int(5) NOT NULL,
+  `atendimento_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `processo`
+--
+
+INSERT INTO `processo` (`id`, `num_processo`, `situacao`, `polo`, `tipo_processo`, `nome_acao`, `valor`, `honorario`, `link`, `observacao`, `tribunal_id`, `cidade_id`, `tipo_acao_id`, `escritorio_id`, `atendimento_id`) VALUES
+(1, '2224511', 1, 1, 1, 'Ação trabalhista contra IE Madeira', '1240.00', '500.00', NULL, NULL, 3, 4742, 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -5879,6 +5909,13 @@ CREATE TABLE `tipo_acao` (
   `escritorio_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `tipo_acao`
+--
+
+INSERT INTO `tipo_acao` (`id`, `nome`, `escritorio_id`) VALUES
+(1, 'AÃ§Ã£o trabalhista', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -5890,6 +5927,13 @@ CREATE TABLE `tribunal` (
   `nome` varchar(45) NOT NULL,
   `escritorio_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `tribunal`
+--
+
+INSERT INTO `tribunal` (`id`, `nome`, `escritorio_id`) VALUES
+(3, 'Teste', 1);
 
 -- --------------------------------------------------------
 
@@ -5964,7 +6008,8 @@ ALTER TABLE `atendimento`
   ADD PRIMARY KEY (`id`),
   ADD KEY `cliente_id` (`cliente_id`),
   ADD KEY `usuario_id` (`usuario_id`),
-  ADD KEY `escritorio_id` (`escritorio_id`);
+  ADD KEY `escritorio_id` (`escritorio_id`),
+  ADD KEY `tipoacao_id` (`tipoacao_id`);
 
 --
 -- Indexes for table `cidade`
@@ -6023,7 +6068,8 @@ ALTER TABLE `processo`
   ADD KEY `tribunal_id` (`tribunal_id`),
   ADD KEY `cidade_id` (`cidade_id`),
   ADD KEY `tipo_acao_id` (`tipo_acao_id`),
-  ADD KEY `escritorio_id` (`escritorio_id`);
+  ADD KEY `escritorio_id` (`escritorio_id`),
+  ADD KEY `atendimento_id` (`atendimento_id`);
 
 --
 -- Indexes for table `responsavel_pj`
@@ -6062,7 +6108,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `advogado`
 --
 ALTER TABLE `advogado`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `advogado_contraria`
@@ -6086,7 +6132,7 @@ ALTER TABLE `arquivo`
 -- AUTO_INCREMENT for table `atendimento`
 --
 ALTER TABLE `atendimento`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `cidade`
@@ -6098,7 +6144,7 @@ ALTER TABLE `cidade`
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cliente_processo`
@@ -6134,7 +6180,7 @@ ALTER TABLE `parte_contraria`
 -- AUTO_INCREMENT for table `processo`
 --
 ALTER TABLE `processo`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `responsavel_pj`
@@ -6146,13 +6192,13 @@ ALTER TABLE `responsavel_pj`
 -- AUTO_INCREMENT for table `tipo_acao`
 --
 ALTER TABLE `tipo_acao`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tribunal`
 --
 ALTER TABLE `tribunal`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `usuario`
@@ -6199,7 +6245,8 @@ ALTER TABLE `arquivo`
 ALTER TABLE `atendimento`
   ADD CONSTRAINT `atendimento_ibfk_1` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id`),
   ADD CONSTRAINT `atendimento_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`),
-  ADD CONSTRAINT `atendimento_ibfk_3` FOREIGN KEY (`escritorio_id`) REFERENCES `escritorio` (`id`);
+  ADD CONSTRAINT `atendimento_ibfk_3` FOREIGN KEY (`escritorio_id`) REFERENCES `escritorio` (`id`),
+  ADD CONSTRAINT `atendimento_ibfk_4` FOREIGN KEY (`tipoacao_id`) REFERENCES `tipo_acao` (`id`);
 
 --
 -- Limitadores para a tabela `cidade`
@@ -6237,6 +6284,7 @@ ALTER TABLE `parte_contraria`
 -- Limitadores para a tabela `processo`
 --
 ALTER TABLE `processo`
+  ADD CONSTRAINT `atendimento_id` FOREIGN KEY (`atendimento_id`) REFERENCES `atendimento` (`id`),
   ADD CONSTRAINT `processo_ibfk_1` FOREIGN KEY (`tribunal_id`) REFERENCES `tribunal` (`id`),
   ADD CONSTRAINT `processo_ibfk_2` FOREIGN KEY (`cidade_id`) REFERENCES `cidade` (`id`),
   ADD CONSTRAINT `processo_ibfk_3` FOREIGN KEY (`tipo_acao_id`) REFERENCES `tipo_acao` (`id`),
