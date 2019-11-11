@@ -8,11 +8,14 @@ if (!isset($_SESSION['user']) && !isset($_SESSION['pass'])) {
 
 <?php
 include('header.php');
+
+include_once "../model/conexao.php";
 ?>
+<script type="text/javascript" src="../js/buscaTipoAcao.js"></script>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <section class="content-header"></section>
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
@@ -34,10 +37,10 @@ include('header.php');
             <form action="../model/tipo_acao/funcoesTipoAcao.php" method="POST">
                 <div class="form-row mt-5">
                     <div class="form-group col-md-8 col-sm-12 col-12">
-                        <input type="form-control" class="form-control" name="nomeAcao" id="nomeAcao" placeholder="Nome do tipo da ação" required>
+                        <input type="form-control" class="form-control" name="nomeAcao" id="nomeAcao" placeholder="Nome do tipo da ação"  onkeyup="buscarTipoAcao(this.value)" required>
                     </div>
                     <div class="col-md-2 col-sm-6 col-6">
-                        <button type="submit" name="btn-consulta" class="btn btn-primary btn-block">Pesquisar</button>
+                        <input type="text" class="btn btn-primary btn-block" placeholder="Pesquisar" aria-describedby="basic-addon1" id="buscanome" >
                     </div>
                     <div class="col-md-2 col-sm-6 col-6">
                         <button type="submit" name="btn-insere" class="btn btn-primary btn-block">Incluir</button>
@@ -45,7 +48,7 @@ include('header.php');
                 </div>
             </form>
 
-            <div class="table-responsive" id="tabelaTipoAcao">
+            <div class="table-responsive" id="resultado">
                 <table class="table table-hover  mt-5 rounded">
                     <thead>
                         <tr>
