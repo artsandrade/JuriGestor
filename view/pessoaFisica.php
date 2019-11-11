@@ -1,11 +1,15 @@
 <script>
-$(document).ready(function() {
-    $('.js-example-basic-multiple').select2();
-    $('.select2').select2();
-    
-});
-</script>
+    $(document).ready(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2()
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
 
+    });
+</script>
+<link rel="stylesheet" href="../css/selectAdvogados.css">
+<script src="../js/selectAdvogados.js"></script>
 <form action="" class="mt-5" id="pf" style="display: none;">
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -28,7 +32,8 @@ $(document).ready(function() {
     <div class="form-row mt-1">
         <div class="form-group col-md-3">
             <label for="inputCpf">CPF</label>
-            <input class="form-control" type="text" id="inputCpf" placeholder="" onkeyup="mascara('###.###.###-##',this,event,true)" maxlength="14">
+            <input class="form-control" type="text" id="inputCpf" placeholder=""
+                onkeyup="mascara('###.###.###-##',this,event,true)" maxlength="14">
         </div>
         <div class="form-group col-md-3">
             <label for="inputRg">RG</label>
@@ -67,7 +72,9 @@ $(document).ready(function() {
         <div class="form-group col-md-6">
             <label for="inputCep">CEP</label>
             <div class="input-group mb-3">
-                <input type="text" id="inputCep" class="form-control" placeholder="" aria-label="Example text with button addon" onkeyup="mascara('#####-###',this,event,true)" maxlength="9" aria-describedby="button-addon1">
+                <input type="text" id="inputCep" class="form-control" placeholder=""
+                    aria-label="Example text with button addon" onkeyup="mascara('#####-###',this,event,true)"
+                    maxlength="9" aria-describedby="button-addon1">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button">
                         <i class="fas fa-search"></i>
@@ -111,13 +118,20 @@ $(document).ready(function() {
         </div>
     </div>
     <div class="form-row mt-1">
-        <div class="form-group col-md-8">
-            <label for="inputAdvogado">Advogado</label>
-            <select class="js-example-basic-multiple form-control select2" id="inputAdvogado"name="avogados[]"style="width: 100%;"multiple="multiple">
-                <option value="AL">Alabama</option>
-                <option value="Pedrinho delas">Pedro</option>
-                <option value="WY">Wyoming</option>
-            </select>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="inputAdvogados">Advogados</label>
+                <select class="select2 form-control " id="inputAdvogados " multiple="multiple"
+                     style="width: 100%;">
+                    <option>Alabama</option>
+                    <option>Alaska</option>
+                    <option>California</option>
+                    <option>Delaware</option>
+                    <option>Tennessee</option>
+                    <option>Texas</option>
+                    <option>Washington</option>
+                </select>
+            </div>
         </div>
     </div>
     <div class="form-row mt-1">
@@ -148,7 +162,8 @@ $(document).ready(function() {
             <div class="input-group mb-3">
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="inputArquivos">
-                    <label class="custom-file-label" for="inputArquivos" aria-describedby="inputArquivos">Escolher arquivo</label>
+                    <label class="custom-file-label" for="inputArquivos" aria-describedby="inputArquivos">Escolher
+                        arquivo</label>
                     <small id="inputArquivos" class="form-text text-muted">
                         É permitido o envio de arquivos de até 2MB.
                     </small>
