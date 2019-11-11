@@ -2,7 +2,7 @@
 include_once("../model/conexao.php");
 session_start();
 if (!isset($_SESSION['user']) && !isset($_SESSION['pass'])) {
-    header('Location: ../view/index.html');
+  header('Location: ../view/index.html');
 }
 ?>
 
@@ -10,22 +10,35 @@ if (!isset($_SESSION['user']) && !isset($_SESSION['pass'])) {
 include('header.php');
 ?>
 
-<div id="content-wrapper">
-      <div class="container-fluid">
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item active">Painel administrativo</li>
-        </ol>
-        <!-- Page Content -->
-        <!-- <h1>Blank Page</h1>
-        <hr>
-        <p>This is a great starting point for new custom pages.</p> -->
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Início</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <!-- <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active"></li> -->
+          </ol>
+        </div>
       </div>
-      <!-- /.container-fluid -->
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+
     </div>
-    <!-- /.content-wrapper -->
-  </div>
-  <!-- /#wrapper -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
 
 <?php
 include('footer.php');

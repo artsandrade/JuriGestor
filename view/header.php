@@ -20,108 +20,155 @@
 
 
   <!-- Custom styles for this template-->
-  <link href="../css/sb-admin.min.css" rel="stylesheet">
+  <!-- <link href="../css/sb-admin.min.css" rel="stylesheet">
+   -->
+  <link rel="stylesheet" href="../css/sb-admin3.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
 
-  
+
 
 </head>
 
-<body id="page-top">
-
-  <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-
-    <a class="navbar-brand mr-1" href="painel.php">JuriGestor</a>
-
-    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-      <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Navbar Search -->
-    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-    </form>
-
+<body class="hold-transition sidebar-mini">
+  <!-- Site wrapper -->
+  <div class="wrapper">
     <!-- Navbar -->
-    <ul class="navbar-nav ml-auto ml-md-0">
-      <li class="nav-item dropdown no-arrow mx-1">
-        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-bell fa-fw"></i>
-          <!-- <span class="badge badge-danger">9+</span> -->
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown no-arrow mx-1">
-        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-envelope fa-fw"></i>
-          <!-- <span class="badge badge-danger">7</span> -->
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown no-arrow">
-        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user-circle fa-fw"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-          <a class="dropdown-item" href="#">Minha conta</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Sair</a>
-        </div>
-      </li>
-    </ul>
+    <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+        </li>
+        <li class="nav-item  d-none d-sm-inline-block">
+          <a href="painel.php" class="nav-link">Home</a>
+        </li>
+      </ul>
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto" >
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" href="#">
+            <i class="fas fa-user-circle"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <a class="dropdown-item" href="#">Minha conta</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Sair</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.navbar -->
 
-  </nav>
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="painel.php" class="brand-link">
+        <span class="brand-text font-weight-light">JuriGestor</span>
+      </a>
 
-  <div id="wrapper">
-
-    <!-- Sidebar -->
-    <ul class="sidebar navbar-nav">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user-friends"></i>
-          <span>Atendimento</span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" href="atendimentoCadastrar.php">Cadastrar</a>
-          <a class="dropdown-item" href="atendimentoConsultar.php">Consultar</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user-alt"></i>
-          <span>Clientes</span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" href="clientesCadastrar.php">Cadastrar</a>
-          <a class="dropdown-item" href="clientesConsultar.php">Consultar</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-book-open"></i>
-          <span>Processos</span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" href="processosCadastrar.php">Cadastrar</a>
-          <a class="dropdown-item" href="processosConsultar.php">Consultar</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-tools"></i>
-          <span>Ferramentas</span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" href="tipoAcao.php">Tipo da ação</a>
-          <a class="dropdown-item" href="tribunal.php">Tribunal</a>
-        </div>
-      </li>
-    </ul>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+                   with font-awesome or any other icon font library -->
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                  Atendimento
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="atendimentoCadastrar.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Cadastrar</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="atendimentoConsultar.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Consultar</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                  Clientes
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="clientesCadastrar.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Cadastrar</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="clientesConsultar.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Consultar</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-tools"></i>
+                <p>
+                  Ferramentas
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="tipoAcao.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Tipo da ação</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="tribunal.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Tribunal</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book-open"></i>
+                <p>
+                  Processos
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../../index.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Cadastrar</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="../../index2.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Consultar</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
