@@ -40,6 +40,7 @@
 <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
 
 <!-- Custom scripts for all pages-->
+
 <script src="../node_modules/bootstrap-fileinput/js/fileinput.js"></script>
 <script src="../node_modules/bootstrap-fileinput/js/locales/pt-BR.js"></script>
 <script src="../node_modules/bootstrap-fileinput/themes/explorer-fas/theme.min.js"></script>
@@ -47,7 +48,7 @@
 <script src="../node_modules/bootstrap-fileinput/themes/explorer/theme.min.js"> </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="../js/sb-admin3.js"></script>
-<!-- <script src="../js/sb-admin.js"></script> -->
+
 </footer>
 </body>
 

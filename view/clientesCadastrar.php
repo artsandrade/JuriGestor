@@ -3,10 +3,21 @@ include('header.php');
 ?>
 <script src="../js/clientes.js"></script>
 <script src="../js/mascara.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
- <link rel="stylesheet" href="../css/sb-admin3.css">    
+<script src="../js/select2.full.min.js"></script>
+<link rel="stylesheet" href="../css/select.css">
+<link rel="stylesheet" href="../css/select2.css">
 <!-- Content Wrapper. Contains page content -->
+<script>
+    $(document).ready(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2({
+            maximumSelectionLength: 3,
+            theme: 'bootstrap4'
+        });
+
+    });
+</script>
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -34,8 +45,9 @@ include('header.php');
             <div class="btn btn-primary d-inline-flex" id="pessoaJuridica" onclick="Mudarestado(false, true)">Pessoa
                 Jurídica</div>
             <?php
-            include('pessoaFisica.php');
             include('pessoaJuridica.php');
+            include('pessoaFisica.php');
+            
             ?>
         </div>
     </section>

@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,13 +15,11 @@
   <link rel="stylesheet" href="../css/input.css">
   <link rel="stylesheet" href="../node_modules/bootstrap-fileinput/css/fileinput.css">
   <script src="../node_modules/jquery/dist/jquery.js"></script>
-
-
-  <!-- Custom styles for this template-->
-  <!-- <link href="../css/sb-admin.min.css" rel="stylesheet">
-   -->
+  
   <link rel="stylesheet" href="../css/sb-admin3.css">
+
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  
   <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
 
@@ -153,13 +149,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../../index.html" class="nav-link">
+                  <a href="processosCadastrar.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Cadastrar</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../../index2.html" class="nav-link">
+                  <a href="processosConsultar.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Consultar</p>
                   </a>

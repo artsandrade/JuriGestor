@@ -63,18 +63,23 @@
         </div>
     </div>
     <div class="form-row mt-1">
-        <div class="form-group col-md-8">
-            <label for="inputAdvogado">Advogados</label>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <input type="checkbox" aria-label="Chebox para permitir input text">
-                    </div>
-                </div>
-                <input type="text" class="form-control" id="inputAdvogado" value="Pedro Henrique" aria-label="Input text com checkbox">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="inputAdvogados2">Advogados</label>
+                <select class="select2 form-control" name= "advogados[]"id="inputAdvogados2" multiple="multiple"
+                     style="width: 100%;">
+                    <option>Arthur</option>
+                    <option>Pedro</option>
+                    <option>Gabriel</option>
+                    <option>Ricardo</option>
+                    <option>Esqueci</option>
+                    <option>Nome</option>
+                    <option>Do outro</option>
+                </select>
             </div>
         </div>
     </div>
+    
     <div class="form-row mt-1">
         <div class="form-group col-md-12">
             <label for="inputObservacao">Observação</label>
@@ -237,7 +242,7 @@
         </div>
     </div>
 
-    <div class="mb-5">
+    <div class="mb-5 pb-3">
         <button class="btn btn-secondary float-right">Incluir responsável</button>
         <button class="btn btn-danger float-left mr-3">Limpar</button>
         <button class="btn btn-primary float-left">Cadastrar</button>

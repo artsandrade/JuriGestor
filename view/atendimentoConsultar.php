@@ -36,7 +36,7 @@ include('header.php');
             <form>
                 <div class="form-row mt-5">
                     <div class="col-md-7 col-sm-12 col-12">
-                        <label for="inputEmail4">Cliente</label>
+                        <label for="nomeCliente">Cliente</label>
                         <input type="text" class="form-control" id="nomeCliente">
                     </div>
                     <div class="col-md-3 col-sm-12 col-12">
