@@ -24,12 +24,12 @@ include('header.php');
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Consulta de processos</h1>
+                    <h1>Cadastro de processos</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Processos</a></li>
-                        <li class="breadcrumb-item active">Consulta</li>
+                        <li class="breadcrumb-item active">Cadastro</li>
                     </ol>
                 </div>
             </div>
@@ -155,8 +155,8 @@ include('header.php');
                 </div>
                 <div class="form-row mt-3">
                     <div class="form-group col-md-8">
-                        <label for="inputParteContraria">Parte contrária</label>
-                        <input type="text" class="form-control" id="inputParteContraria">
+                        <label for="inputAdvParteContraria">Advogado parte contrária</label>
+                        <input type="text" class="form-control" id="inputAdvParteContraria">
                     </div>
                     <div class="form-group col-md-2">
                         <label for="inputOAB">OAB</label>
