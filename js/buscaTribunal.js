@@ -1,7 +1,7 @@
 var req;
  
 // FUNÇÃO PARA BUSCA NOTICIA
-function buscarTipoAcao(valor) {
+function buscarTribunal(valor) {
  
 // Verificando Browser
 if(window.XMLHttpRequest) {
@@ -12,7 +12,7 @@ else if(window.ActiveXObject) {
 }
  
 // Arquivo PHP juntamente com o valor digitado no campo (método GET)
-var url = "../model/tipo_acao/consultaNome.php?valor="+valor;
+var url = "../model/tribunal/consultaNome.php?valor="+valor;
  
 // Chamada do método open para processar a requisição
 req.open("Get", url, true);
@@ -22,7 +22,7 @@ req.onreadystatechange = function() {
  
 	// Exibe a mensagem "Buscando Noticias..." enquanto carrega
 	if(req.readyState == 1) {
-		document.getElementById('resultado').innerHTML = 'Buscando tipos das ações...';
+		document.getElementById('resultado').innerHTML = 'Buscando tribunais...';
 	}
  
 	// Verifica se o Ajax realizou todas as operações corretamente

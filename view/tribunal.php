@@ -8,11 +8,14 @@ if (!isset($_SESSION['user']) && !isset($_SESSION['pass'])) {
 
 <?php
 include('header.php');
+
+include_once "../model/conexao.php";
 ?>
+<script type="text/javascript" src="../js/buscaTribunal.js"></script>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <section class="content-header"></section>
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
@@ -34,23 +37,20 @@ include('header.php');
 
             <form action="../model/tribunal/funcoesTribunal.php" method="post">
                 <div class="form-row mt-5">
-                    <div class="form-group col-md-8 col-sm-12 col-12">
-                        <input class="form-control" id="inputTribunal" placeholder="Nome do tribunal" name="nomeTribunal" required>
+                    <div class="form-group col-md-9 col-sm-12 col-12">
+                        <input class="form-control" id="inputTribunal" placeholder="Nome do tribunal" name="nomeTribunal" onkeyup="buscarTribunal(this.value)"required>
                     </div>
-                    <div class="col-md-2 col-sm-6 col-6">
-                        <button type="submit" name="btn-consulta" class="btn btn-primary btn-block">Pesquisar</button>
-                    </div>
-                    <div class="col-md-2 col-sm-6 col-6">
+                    <div class="col-md-3 col-sm-6 col-6">
                         <button type="submit" name="btn-insere" class="btn btn-primary btn-block">Incluir</button>
                     </div>
             </form>
-            <div class="table-responsive">
+            <div class="table-responsive" id="resultado">
                 <table class="table table-hover  mt-5 rounded">
-                    <thead class="thead-dark">
+                    <thead>
                         <tr>
-                            <th scope="col">Nome</th>
-                            <th width="30" scope="col"></th>
-                            <th width="30" scope="col"></th>
+                            <th scope="col" class="bg-dark text-light">Nome</th>
+                            <th width="30" scope="col" class="bg-dark text-light"></th>
+                            <th width="30" scope="col" class="bg-dark text-light"></th>
                         </tr>
                     </thead>
                     <tbody>
