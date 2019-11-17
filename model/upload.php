@@ -12,18 +12,12 @@ exit(); // terminate
 function upload() 
 {
     $preview = $config = $errors = [];}
-    $targetDir = '/webroot/uploads';
+    $targetDir = 'arquivos/';
     if (!file_exists($targetDir)) {
         @mkdir($targetDir);
     }
     $fileBlob = 'fileBlob';                      // the parameter name that stores the file blob
-    if (isset($_FILES[$fileBlob]) && isset($_POST['uploadToken'])) {
-        $token = $_POST['uploadToken'];          // gets the upload token
-        if (!validateToken($token)) {            // your access validation routine (not included)
-            return [
-                'error' => 'Access not allowed'  // return access control error
-            ];
-        }
+    if (isset($_FILES[$fileBlob])) {
         $file = $_FILES[$fileBlob]['tmp_name'];  // the path for the uploaded file chunk 
         $fileName = $_POST['fileName'];          // you receive the file name as a separate post data
         $fileSize = $_POST['fileSize'];          // you receive the file size as a separate post data
@@ -113,6 +107,6 @@ function getThumbnailUrl($path, $fileName) {
     if (generateThumbnail($sourceFile, $targetFile) === true) { 
         return '../model/uploads/thumbs/' . $fileName;
     } else {
-        return '../model/uploads/' . $fileName; // return the original file
+        return '../model/arquivos/' . $fileName; // return the original file
     }
 }
