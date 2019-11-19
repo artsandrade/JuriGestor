@@ -36,7 +36,31 @@ else{
         }
     }
     else{
-        header('Location: ../../view/tipoAcao.php');
+        if(isset($_POST['btn-altera'])){
+    
+            $id = mysqli_real_escape_string($conn, $_POST['idAcao']);
+        $nome = mysqli_real_escape_string($conn, $_POST['nomeAcao']);
+
+        $query = "UPDATE tipo_acao set nome = '{$nome}' WHERE id = '{$id}'";
+        $result = mysqli_query($conn, $query);
+        
+            header('Location: ../../view/tipoAcao.php?sucesso');
+        }
+        else{
+            if(isset($_POST['btn-remove'])){
+                if(!isset($_SESSION)) 
+                { 
+                session_start(); 
+                }
+                $id = mysqli_real_escape_string($conn, $_POST['idAcao']);
+        
+                $query = "DELETE FROM tipo_acao WHERE id = '$id'";
+                $result = mysqli_query($conn, $query);
+        
+                header('Location: ../../view/tipoAcao.php?sucesso');
+                
+        }
+        }
     }
 }
 ?>

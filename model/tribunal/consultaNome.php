@@ -53,7 +53,7 @@ while ($dados = mysqli_fetch_assoc($consulta)) {
                 <div class='modal-dialog' role='document'>
                     <div class='modal-content'>
                         <div class='modal-header'>
-                            <h5 class='modal-title' id='exampleModalLabel'>Excluir</h5>
+                            <h5 class='modal-title' id='exampleModalLabel'>Alterar</h5>
                             <button type='button' class='close' data-dismiss='modal' aria-label='Fechar'>
                                 <span aria-hidden='true'>&times;</span>
                             </button>
@@ -88,7 +88,7 @@ while ($dados = mysqli_fetch_assoc($consulta)) {
                 <div class='modal-dialog' role='document'>
                     <div class='modal-content'>
                         <div class='modal-header'>
-                            <h5 class='modal-title' id='exampleModalLabel'>Excluir</h5>
+                            <h5 class='modal-title' id='exampleModalLabel'>Alterar</h5>
                             <button type='button' class='close' data-dismiss='modal' aria-label='Fechar'>
                                 <span aria-hidden='true'>&times;</span>
                             </button>
@@ -103,6 +103,30 @@ while ($dados = mysqli_fetch_assoc($consulta)) {
                                 <button type='submit' name='btn-altera' class='btn btn-primary'>Alterar</button>
                                 <button type='button' class='btn btn-secondary' data-dismiss='modal'>Fechar</button>
                             </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class='modal fade' id='modalTribunal{$dados['id']}' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                <div class='modal-dialog' role='document'>
+                    <div class='modal-content'>
+                        <div class='modal-header'>
+                            <h5 class='modal-title' id='exampleModalLabel'>Excluir</h5>
+                            <button type='button' class='close' data-dismiss='modal' aria-label='Fechar'>
+                                <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>
+                        <form action='\"../model/tribunal/remove.php\"' method='POST'>
+                        <div class='modal-body'>
+                            <p>Você tem certeza que deseja excluir '{$dados['nome']}'</p>
+                        </div>
+                        <div class='modal-footer'>
+                            
+                                <input type='hidden' name='idTribunal' value='{$dados['id']}'>
+                                <button type='submit' name='btn-remove' class='btn btn-primary'>Excluir</button>
+                                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Fechar</button>
+                            
+                        </div>
                         </form>
                     </div>
                 </div>

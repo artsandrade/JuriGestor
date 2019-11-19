@@ -51,7 +51,7 @@ while ($dados = mysqli_fetch_assoc($consulta)) {
             <td>$nome</td>
             <td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalAcaoAlterar{$dados['id']}' data-whatever='{$dados['nome']}'><i class='fas fa-pencil-alt'></i></td>
             <td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalAcaoNao{$dados['id']}'><i class='fas fa-trash-alt'></i></td>
-
+            
             <div class='modal fade' id='modalAcaoAlterar{$dados['id']}' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                 <div class='modal-dialog' role='document'>
                     <div class='modal-content'>
@@ -61,17 +61,15 @@ while ($dados = mysqli_fetch_assoc($consulta)) {
                                 <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>
-                        <form action='../model/tipo_acao/altera.php' method='POST'>
+                        <form action='\"../model/tipo_acao/altera.php\"' method='POST'>
                             <div class='modal-body'>
                                 <p>Faça as devidas alterações abaixo</p>
-                                <input type='text' class='form-control' name='nomeAcao' placeholder='{$dados['nome']}' required>
-                                
+                                <input type='text' class='form-control' name='nomeAcao' required>
                             </div>
                             <div class='modal-footer'>
                                 <input type='hidden' name='idAcao' value='{$dados['id']}'>
                                 <button type='submit' name='btn-altera' class='btn btn-primary'>Alterar</button>
                                 <button type='button' class='btn btn-secondary' data-dismiss='modal'>Fechar</button>
-                                
                             </div>
                         </form>
                     </div>
@@ -84,17 +82,17 @@ while ($dados = mysqli_fetch_assoc($consulta)) {
                         <div class='modal-header'>
                             <h5 class='modal-title' id='exampleModalLabel'>Impossível excluir</h5>
                             <button type='button' class='close' data-dismiss='modal' aria-label='Fechar'>
-                                <span aria-hidden='true'>&times;</span>
+                            <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>
-                        <div class='modal-body'>
-                            <p>Desculpe, mas o tipo da ação '{$dados['nome']}' está sendo utilizado em um atendimento ou processo.
-                                Para que você possa excluir '{$dados['nome']}', é necessário primeiramente remover os cadastros que estão
-                                vinculados!</p>
-                        </div>
-                        <div class='modal-footer'>
-                            <button type='button' class='btn btn-secondary' data-dismiss='modal'>Fechar</button>
-                        </div>
+                    <div class='modal-body'>
+                        <p>Desculpe, mas o tipo da ação '{$dados['nome']}' está sendo utilizado em um atendimento ou processo.
+                        Para que você possa excluir '{$dados['nome']}', é necessário primeiramente remover os cadastros que estão
+                        vinculados!</p>
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-secondary' data-dismiss='modal'>Fechar</button>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -109,7 +107,7 @@ while ($dados = mysqli_fetch_assoc($consulta)) {
             <td>$nome</td>
             <td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalAcaoAlterar{$dados['id']}' data-whatever='{$dados['nome']}'><i class='fas fa-pencil-alt'></i></td>
             <td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalAcao{$dados['id']}'><i class='fas fa-trash-alt'></i></td>
-        
+            
             <div class='modal fade' id='modalAcaoAlterar{$dados['id']}' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                 <div class='modal-dialog' role='document'>
                     <div class='modal-content'>
@@ -119,10 +117,10 @@ while ($dados = mysqli_fetch_assoc($consulta)) {
                                 <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>
-                        <form action='../model/tipo_acao/altera.php' method='POST'>
+                        <form action='\"../model/tipo_acao/altera.php\"' method='POST'>
                             <div class='modal-body'>
                                 <p>Faça as devidas alterações abaixo</p>
-                                <input type='text' class='form-control' name='nomeAcao' placeholder='{$dados['nome']}' required>
+                                <input type='text' class='form-control' name='nomeAcao' required>
                             </div>
                             <div class='modal-footer'>
                                 <input type='hidden' name='idAcao' value='{$dados['id']}'>
@@ -133,32 +131,34 @@ while ($dados = mysqli_fetch_assoc($consulta)) {
                     </div>
                 </div>
             </div>
+        </tr>
+        ";
 
-            <div class='modal fade' id='modalAcao{$dados['id']}' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-                <div class='modal-dialog' role='document'>
-                    <div class='modal-content'>
-                        <div class='modal-header'>
-                            <h5 class='modal-title' id='exampleModalLabel'>Excluir</h5>
-                            <button type='button' class='close' data-dismiss='modal' aria-label='Fechar'>
-                                <span aria-hidden='true'>&times;</span>
-                            </button>
-                        </div>
-                        <div class='modal-body'>
-                            <p>Você tem certeza que deseja excluir '{$dados['nome']}'?</p>
-                        </div>
-                        <div class='modal-footer'>
-                            <form action='remove.php' method='POST'>
-
-                                <input type='hidden' name='idAcao' value='{$dados['id']}'>
-                                <button type='submit' name='btn-remove' class='btn btn-primary'>Excluir</button>
-                                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Fechar</button>
-                            </form>
-                        </div>
+        echo "
+                
+        <div class='modal fade' id='modalAcao{$dados['id']}' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+            <div class='modal-dialog' role='document'>
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <h5 class='modal-title' id='exampleModalLabel'>Excluir</h5>
+                        <button type='button' class='close' data-dismiss='modal' aria-label='Fechar'>
+                            <span aria-hidden='true'>&times;</span>
+                        </button>
+                    </div>
+                    <div class='modal-body'>
+                        <p>Você tem certeza que deseja excluir '{$dados['nome']}'</p>
+                    </div>
+                    <div class='modal-footer'>
+                        <form action='\"../model/tipo_acao/remove.php\"' method='POST'>
+                            <input type='hidden' name='idAcao' value='{$dados['id']}'>
+                            <button type='submit' name='btn-remove' class='btn btn-primary'>Excluir</button>
+                            <button type='button' class='btn btn-secondary' data-dismiss='modal'>Fechar</button>
+                        </form>
                     </div>
                 </div>
             </div>
-        </tr>
-    
+        </div>
+
         ";
     }
 }

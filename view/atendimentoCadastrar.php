@@ -40,7 +40,7 @@ include_once "../model/conexao.php";
                 <div class="form-row mt-5">
                     <div class="form-group col-md-6 col-sm-11 col-10">
                         <label for="inputCliente">Cliente</label>
-                        <input class="form-control" id="idcliente" placeholder="" name="idcliente" required>
+                        <input class="form-control" id="idcliente" placeholder="" name="idcliente" readonly required>
                     </div>
                     <div class="form-group col-md-1 col-sm-1 col-1 mt-auto" style="text-align: left;">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPesquisaCliente" title="Pesquisar cliente"><i class="fas fa-search"></i>
