@@ -34,7 +34,7 @@ include_once "../model/conexao.php";
     <?php
     if(isset($_SESSION['mensagem'])):?>
     <div class="col-sm-4 ml-auto">
-        <?php if($_SESSION['mensagem']=='Cadastrado com sucesso!'):?>
+        <?php if($_SESSION['mensagem']=='Cadastrado com sucesso!' || $_SESSION['mensagem']=='Alterado com sucesso!'):?>
             <div id="alert" class="alert alert-success alert-dismissible fade show" role="alert">
                 <?php echo $_SESSION['mensagem'];?>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -64,6 +64,16 @@ include_once "../model/conexao.php";
                     <div class="col-md-3 col-sm-6 col-6">
                         <button type="submit" name="btn-insere" class="btn btn-primary btn-block">Incluir</button>
                     </div>
+
+                    <script>
+                        $(document).ready(function () {
+                            $('input').keypress(function (e) {
+                                    var code = null;
+                                    code = (e.keyCode ? e.keyCode : e.which);                
+                                    return (code == 13) ? false : true;
+                            });
+                        });
+                    </script>
             </form>
             <div class="table-responsive" id="resultado">
                 <table class="table table-hover  mt-5 rounded">

@@ -49,7 +49,7 @@ include('header.php');
                             global $result;
                             while ($dados = mysqli_fetch_array($result)) :
                                 ?>
-                                <option><?php echo $dados['nome']; ?></option>
+                                <option value="<?php echo $dados['id']; ?>"><?php echo $dados['nome']; ?></option>
                             <?php endwhile; ?>
                         </select>
                     </div>
@@ -63,6 +63,7 @@ include('header.php');
                 <table class="table table-hover mt-5 rounded">
                     <thead>
                         <tr>
+                            <th scope="col" class="bg-dark text-light">Data</th>
                             <th scope="col" class="bg-dark text-light">Cliente</th>
                             <th scope="col" class="bg-dark text-light">Tipo da ação</th>
                             <th scope="col" class="bg-dark text-light">Relato</th>
@@ -99,7 +100,7 @@ include('header.php');
                                     $result3 = mysqli_query($conn, $query3);
                                     $dados3 = mysqli_fetch_array($result3)
                                     ?>
-
+                                <td><?php echo ($dados['dt']); ?></td>
                                 <td><?php echo substr($dados3['nome'], 0, 40); ?></td>
                                 <td><?php echo substr($dados2['nome'], 0, 40); ?></td>
                                 <td><?php echo substr($dados['relato'], 0, 50); ?>...</td>
