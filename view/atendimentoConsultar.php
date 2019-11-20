@@ -13,15 +13,15 @@ include('header.php');
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <section class="content-header"></section>
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Atendimento</h1>
+                    <h1>Consultar atendimentos</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Atendimento</a></li>
+                        <li class="breadcrumb-item"><a href="#">Atendimentos</a></li>
                         <li class="breadcrumb-item active">Consultar</li>
                     </ol>
                 </div>
@@ -61,11 +61,11 @@ include('header.php');
 
             <div class="table-responsive">
                 <table class="table table-hover mt-5 rounded">
-                    <thead class="thead-dark">
+                    <thead>
                         <tr>
-                            <th scope="col">Cliente</th>
-                            <th scope="col">Tipo da ação</th>
-                            <th scope="col">Relato</th>
+                            <th scope="col" class="bg-dark text-light">Cliente</th>
+                            <th scope="col" class="bg-dark text-light">Tipo da ação</th>
+                            <th scope="col" class="bg-dark text-light">Relato</th>
                             <th width="20" scope="col" class="bg-dark text-light"></th>
                             <th width="20" scope="col" class="bg-dark text-light"></th>
                         </tr>

@@ -10,10 +10,12 @@ if(isset($_POST['btn-insere'])){
     $query = "INSERT INTO tribunal(nome, escritorio_id) VALUES ('$nome', '$escritorio_id')";
     $result = mysqli_query($conn, $query);
     if($result){
-        header('Location: ../../view/tribunal.php?sucesso');
+        $_SESSION['mensagem'] = "Cadastrado com sucesso!";
+        header('Location: ../../view/tribunal.php');
     }
     else{
-        header('Location: ../../view/tribunal.php?erro');
+        $_SESSION['mensagem'] = "Erro ao cadastrar!";
+        header('Location: ../../view/tribunal.php');
     }
 }
 else{
@@ -26,10 +28,10 @@ else{
         $result = mysqli_query($conn, $query);
         
         if($result){
-            header('Location: ../../view/tribunal.php?sucesso');
+            header('Location: ../../view/tribunal.php');
         }
         else{
-            header('Location: ../../view/tribunal.php?erro');
+            header('Location: ../../view/tribunal.php');
         }
     }
     else{
@@ -41,7 +43,7 @@ else{
         $query = "UPDATE tribunal set nome = '{$nome}' WHERE id = '{$id}'";
         $result = mysqli_query($conn, $query);
         
-            header('Location: ../../view/tribunal.php?sucesso');
+            header('Location: ../../view/tribunal.php');
         }
         else{
             if(isset($_POST['btn-remove'])){
@@ -51,7 +53,7 @@ else{
                 $query = "DELETE FROM tribunal WHERE id = '$id'";
                 $result = mysqli_query($conn, $query);
                 
-                    header('Location: ../../view/tribunal.php?sucesso');
+                    header('Location: ../../view/tribunal.php');
                 
         } 
         }

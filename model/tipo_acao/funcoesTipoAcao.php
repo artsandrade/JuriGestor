@@ -13,10 +13,12 @@ if(isset($_POST['btn-insere'])){
     $query = "INSERT INTO tipo_acao(nome, escritorio_id) VALUES ('$nome', '$escritorio_id')";
     $result = mysqli_query($conn, $query);
     if($result){
-        header('Location: ../../view/tipoAcao.php?sucesso');
+        $_SESSION['mensagem'] = "Cadastrado com sucesso!";
+        header('Location: ../../view/tipoAcao.php');
     }
     else{
-        header('Location: ../../view/tipoAcao.php?erro');
+        $_SESSION['mensagem'] = "Erro ao cadastrar!";
+        header('Location: ../../view/tipoAcao.php');
     }
 }
 else{
@@ -29,10 +31,10 @@ else{
         $result = mysqli_query($conn, $query);
         
         if($result){
-            header('Location: ../../view/tipoAcao.php?sucesso');
+            header('Location: ../../view/tipoAcao.php');
         }
         else{
-            header('Location: ../../view/tipoAcao.php?erro');
+            header('Location: ../../view/tipoAcao.php');
         }
     }
     else{
@@ -44,7 +46,7 @@ else{
         $query = "UPDATE tipo_acao set nome = '{$nome}' WHERE id = '{$id}'";
         $result = mysqli_query($conn, $query);
         
-            header('Location: ../../view/tipoAcao.php?sucesso');
+            header('Location: ../../view/tipoAcao.php');
         }
         else{
             if(isset($_POST['btn-remove'])){
@@ -57,7 +59,7 @@ else{
                 $query = "DELETE FROM tipo_acao WHERE id = '$id'";
                 $result = mysqli_query($conn, $query);
         
-                header('Location: ../../view/tipoAcao.php?sucesso');
+                header('Location: ../../view/tipoAcao.php');
                 
         }
         }
