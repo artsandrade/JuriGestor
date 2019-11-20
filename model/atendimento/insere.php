@@ -17,13 +17,13 @@ if(isset($_POST['btn-insere'])){
 
     $query = "INSERT INTO atendimento(dt, relato, cliente_id, usuario_id, escritorio_id, tipoacao_id) VALUES ('{$data}', '{$relato}', '{$cliente_id}', '{$usuario_id}', '{$escritorio_id}', '{$tipoacao_id}')";
     $result = mysqli_query($conn, $query);
-    
-    $query2 = "SELECT id from atendimento WHERE id = (select max(id) FROM atendimento)";
-    $result2 = mysqli_query($conn, $query2);
-    $dados = mysqli_fetch_array($result2);
-    $_SESSION['id_cadastro'] = $dados['id'];
-
-    header('Location: ../../view/atendimentoCadastrar2.php');
-    
+    if($result){
+        $_SESSION['mensagem'] = "Cadastrado com sucesso!";
+        header('Location: ../../view/atendimentoCadastrar.php');
+    }
+    else{
+        $_SESSION['mensagem'] = "Erro ao cadastrar!";
+        header('Location: ../../view/atendimentoCadastrar.php');
+    }
 }
 ?>

@@ -20,12 +20,13 @@ include_once "../model/conexao.php";
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Cadastrar atendimento</h1>
+                    <h1>Editar atendimento</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Atendimentos</a></li>
-                        <li class="breadcrumb-item active">Cadastrar</li>
+                        <li class="breadcrumb-item active"><a href="atendimentoConsultar.php">Consultar</a></li>
+                        <li class="breadcrumb-item active">Editar</li>
                     </ol>
                 </div>
             </div>
@@ -60,13 +61,7 @@ include_once "../model/conexao.php";
                 <div class="form-row mt-5">
                     <div class="form-group col-md-7 col-sm-12 col-12">
                         <label for="inputCliente">Cliente</label>
-                        <div class="input-group">
-                            <input class="form-control" id="idcliente" name="idcliente" required onkeydown="event.preventDefault()">
-                            <span class="input-group-btn">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPesquisaCliente" title="Pesquisar cliente"><i class="fas fa-search"></i>
-                            </span>
-                        </div>
-                        
+                        <input class="form-control" id="idcliente" name="idcliente" readonly>
                     </div>
                     <div class="form-group col-md-5 col-sm-12 col-12">
                         <label for="comboTipoAcao">Tipo da ação</label>
@@ -101,42 +96,6 @@ include_once "../model/conexao.php";
 include('footer.php');
 
 ?>
-<!-- Modal pesquisa de cliente -->
-<div class="modal fade" id="modalPesquisaCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content" id="tabelaCliente">
-            <form action="../model/atendimento/consultaCliente.php" method="POST">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Pesquisar cliente</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-row mt-auto">
-                        <div class="form-group col-md-12 col-sm-12 col-12">
-                            <input class="form-control" id="nomeCliente" placeholder="Nome do cliente" name="nomeCliente" onkeyup="buscarCliente(this.value)" required>
-                        </div>
-                    </div>
-
-                    <div class="table-responsive" id="resultado">
-                        <table class="table table-hover  mt-5 rounded">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Documento</th>
-                                    <th width="30" scope="col"></th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 <!-- Modal limpar campos -->
 <div class="modal fade" id="modalLimpar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
