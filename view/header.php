@@ -8,7 +8,7 @@
   <meta name="author" content="">
   <link rel="shortcut icon" type="image/png" href="../img/logomarcamin.png">
 
-  <title>JuriGestor - Admin</title>
+  <title>JuriGestor - Painel Administrativo</title>
 
   <!-- Custom fonts for this template-->
   <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css">
@@ -74,7 +74,7 @@
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
-                  Atendimento
+                  Atendimentos
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>

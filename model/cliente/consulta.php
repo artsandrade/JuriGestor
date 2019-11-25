@@ -6,7 +6,7 @@
     $id = mysqli_real_escape_string($conn, $_SESSION['escritorio_id']);
     $iduser = mysqli_real_escape_string($conn, $_SESSION['id_user']);
 
-    $query = "SELECT * FROM atendimento WHERE escritorio_id = '$id' AND usuario_id = '$iduser' ORDER BY dt ASC";
+    $query = "SELECT * FROM cliente WHERE escritorio_id = '$id' ORDER BY nome";
     $result = mysqli_query($conn, $query);
 
 ?>

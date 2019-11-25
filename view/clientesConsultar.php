@@ -2,6 +2,7 @@
 include('header.php');
 ?>
 
+<link rel="stylesheet" href="../datatables/css/datatables.css">
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -22,10 +23,9 @@ include('header.php');
     </section>
 
     <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-            
-            <form>
+    <section class="content mb-5">
+        <div class="container-fluid">  
+            <!-- <form>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputEstado">Filtro</label>
@@ -42,37 +42,17 @@ include('header.php');
                     </div>
                 </div>
                 <button class="btn btn-primary float-right">Pesquisar</button>
-            </form>
+            </form> -->
             <div class="table-responsive">
-                <table class="table table-hover  mt-5 rounded">
+                <table class="table table-hover  mt-5 rounded" id="listar_clientes">
                     <thead class="thead-dark">
                         <tr>
                             <th>Cliente</th>
                             <th>Telefone</th>
                             <th>Celular</th>
                             <th>Email</th>
+                            <th>Ações</th>
                     </thead>
-                    <tbody>
-
-                        <tr>
-                            <td>Arthur Andrade</td>
-                            <td>(34)99999-9999</td>
-                            <td>(34)99999-9999</td>
-                            <td>email@gmail.com</td>
-                        </tr>
-                        <tr>
-                            <td>Pedro Henrique</td>
-                            <td>(34)99999-9999</td>
-                            <td>(34)99999-9999</td>
-                            <td>gordinhoDelas@gmail.com</td>
-                        </tr>
-                        <tr>
-                            <td>Ricardo</td>
-                            <td>(34)99999-9999</td>
-                            <td>(34)99999-9999</td>
-                            <td>relatório@gmail.com</td>
-                        </tr>
-                    </tbody>
                 </table>
             </div>
             <!-- Page Content -->
@@ -85,6 +65,22 @@ include('header.php');
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<script src="../datatables/js/datatables.js"></script>
+<script src="../datatables/js/datatables_b.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#listar_clientes').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "../model/cliente/consultar.php",
+            "type": "POST"
+        },
+    });
+} );
+</script>
 
 <?php
 include('footer.php');

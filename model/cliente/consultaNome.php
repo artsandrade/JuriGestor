@@ -43,7 +43,7 @@ while ($dados = mysqli_fetch_assoc($consulta)) {
         <tr>
             <td>$nome</td>
             <td>$documento</td>
-            <td><button type='button' class='btn btn-primary' title='Selecionar cliente'><i class='fas fa-check'></i></td>
+            <td><button type='button' class='btn btn-primary' name='idCliente' value='{$id}' data-dismiss='modal' title='Selecionar cliente'><i class='fas fa-check'></i></td>
         </tr>
         ";
 }    
