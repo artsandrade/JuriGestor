@@ -79,43 +79,7 @@
             </div>
         </div>
     </div>
-    
-    <div class="form-row mt-1">
-        <div class="form-group col-md-12">
-            <label for="inputObservacao">Observação</label>
-            <textarea class="form-control" id="inputObservacao" rows="4"></textarea>
-        </div>
-    </div>
-    <div class="table-responsive">
-        <table class="table table-hover mt-5 rounded">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Arquivos</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Copia o outro.py</td>
-                </tr>
-                <tr>
-                    <td>Ou deixa esse mesmo.docs</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="row mt-2">
-        <div class="col-md-8">
-            <div class="input-group mb-3">
-                <div class="custom-file">
-                    <label class="custom-file-label" for="inputArquivos">Escolher arquivo</label>
-                    <input type="file" class="custom-file-input" id="inputArquivos" aria-describedby="descricaoArquivos">
-                    <small id="descricaoArquivos" class="form-text text-muted">
-                        É permitido o envio de arquivos de até 2MB.
-                    </small>
-                </div>
-            </div>
-        </div>
-    </div>
+    <hr > 
     <div class="form-row mt-1">
         <div class="form-group col-md-6">
             <label for="inputNomeCompleto">Nome completo</label>
