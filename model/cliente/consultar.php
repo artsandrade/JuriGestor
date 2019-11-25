@@ -24,7 +24,7 @@ $result_pg = "SELECT COUNT(id) AS num_result FROM cliente";
 $resultado_pg = mysqli_query($conn, $result_pg);
 $qnt_linhas = mysqli_fetch_assoc($resultado_pg);
 
-$result_clientes = "SELECT nome, telefone, celular, email FROM cliente WHERE escritorio_id = '$id'";
+$result_clientes = "SELECT nome, telefone, celular, email, id    FROM cliente WHERE escritorio_id = '$id'";
 
 if (!empty($requestData['search']['value'])) {   // se houver um parâmetro de pesquisa, $requestData['search']['value'] contém o parâmetro de pesquisa
     $result_clientes .= " AND (id LIKE '%" . $requestData['search']['value'] . "%' ";
@@ -51,7 +51,8 @@ while ($row_clientes = mysqli_fetch_array($resultado_clientes)) {
     $dado[] = $row_clientes["telefone"];
     $dado[] = $row_clientes["celular"];
     $dado[] = $row_clientes["email"];
-    $dado[] = $btn_visualizar . $btn_excluir . $btn_alterar;
+    $btn_excluir = "<button type='button' class='btn btn-danger ml-3' data-toggle='modal' data-target='#modalExcluirCliente".$row_clientes["id"]."'><i class='fas fa-trash-alt'></i>";
+    $dado[] = $btn_excluir;
     $dados[] = $dado;
 }
 
