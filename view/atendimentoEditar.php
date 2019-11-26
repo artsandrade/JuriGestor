@@ -61,7 +61,7 @@ include_once "../model/conexao.php";
                 <div class="form-row mt-5">
                     <div class="form-group col-md-7 col-sm-12 col-12">
                         <label for="inputCliente">Cliente</label>
-                        <input class="form-control" id="idcliente" name="idcliente" readonly>
+                        <input class="form-control" id="idcliente" name="idcliente" value="<?php echo $_SESSION['atendimentoCliente']?>" readonly>
                     </div>
                     <div class="form-group col-md-5 col-sm-12 col-12">
                         <label for="comboTipoAcao">Tipo da ação</label>
@@ -78,7 +78,7 @@ include_once "../model/conexao.php";
                     </div>
                     <div class="form-group col-md-12 col-sm-12 col-12">
                         <label for="inputRelato">Relato</label>
-                        <textarea class="form-control" id="relato" name="relato" rows="4" required ></textarea>
+                        <textarea class="form-control" id="relato" name="relato" rows="4" required ><?php echo $_SESSION['atendimentoRelato']?></textarea>
                     </div>
                     <div class="form-group mt-5 mr-auto">
                         <button class="btn btn-danger" data-toggle="modal" data-target="#modalLimpar" title="Limpar campos">Limpar</button>
