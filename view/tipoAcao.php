@@ -131,19 +131,18 @@ echo'
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Alterar</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Excluir</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="../model/tipo_acao/altera.php" method="POST">
+                <form action="../model/tipo_acao/remove.php" method="POST">
                     <div class="modal-body">
-                        <p>Preencha o campo abaixo com o novo nome para "'.$row_clientes["nome"].'".</p>
-                        <input type="text" class="form-control" name="nomeAcao" required>     
+                        <p>Você tem certeza que deseja excluir "'.$row_clientes["nome"].'"?.</p>    
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="idAcao" value=value="'.$row_clientes["id"].'">
-                        <button type="submit" name="btn-altera" class="btn btn-primary">Alterar</button>
+                        <button type="submit" name="btn-remove" class="btn btn-primary">Excluir</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                     </div>
                 </form>
@@ -155,30 +154,23 @@ echo'
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Alterar</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Impossível excluir</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="../model/tipo_acao/altera.php" method="POST">
                     <div class="modal-body">
-                        <p>///Preencha o campo abaixo com o novo nome para "'.$row_clientes["nome"].'".</p>
-                        <input type="text" class="form-control" name="nomeAcao" required>     
+                        <p>Desculpe, mas o tipo da ação "'.$row_clientes["nome"].'" está sendo utilizado
+                        em um atendimento ou processo. Para que você possa excluir "'.$row_clientes["nome"].'",
+                        é necessário primeiramente remover os cadastros que estão vinculados!</p>
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="idAcao" value=value="'.$row_clientes["id"].'">
-                        <button type="submit" name="btn-altera" class="btn btn-primary">Alterar</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                     </div>
-                </form>
             </div>
         </div>
-    </div>'
-
-
-
-
-;
+    </div>';
     }
 include('footer.php');
 ?>
