@@ -8,7 +8,6 @@ $dbname = "jurigestor";
 $conn = mysqli_connect($servidor, $usuario, $senha, $dbname);
 
 $nome = $_POST['inputNome'];
-$senha = $_POST['inputSenha'];
 $estadoCivil =  $_POST['inputEstadoCivil'];
 $cpf = $_POST['inputCpf'];
 $rg = $_POST['inputRg'];
@@ -27,10 +26,11 @@ $recado = $_POST['inputRecado'];
 $email = $_POST['inputEmail'];
 $advogado = $_POST['inputAdvogados'];
 $obs = $_POST['inputObservacao'];
+$celular = $_POST['inputCelular'];
 
 
 
-$sql = "INSERT INTO cliente (nome, senha, estado_civil, documento, rg, orgao_emissor, dt_emissao, profissao, ctps, filiacao1, filiacao2, cep, endereco, num,  complemento, telefone, recado, email, advogado1, advogado2, observarcao, escritorio_id) VALUES ('$nome', '$senha', '$estadoCivil', '$cpf', '$rg', '$emissor' , '$emissao', '$profissao', '$ctps', '$pai', '$mae', '$cep', '$end', '$num','$complemento', '$tel',  '$recado', '$email', '$advogado[0]', '$advogado[1]', '$obs', '1')";
+$sql = "INSERT INTO cliente (nome, status, estado_civil, documento, rg, orgao_emissor, dt_emissao, profissao, ctps, filiacao1, filiacao2, cep, endereco, num,  complemento, telefone, recado, email, advogado1, advogado2, observarcao, escritorio_id, celular) VALUES ('$nome', '1', '$estadoCivil', '$cpf', '$rg', '$emissor' , '$emissao', '$profissao', '$ctps', '$pai', '$mae', '$cep', '$end', '$num','$complemento', '$tel',  '$recado', '$email', '$advogado[0]', '$advogado[1]', '$obs', '1', '$celular')";
 $query = mysqli_query($conn, $sql) or die(mysqli_error($conn)); 
 
 if($query){

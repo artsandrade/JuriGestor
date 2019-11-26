@@ -51,8 +51,9 @@ while ($row_clientes = mysqli_fetch_array($resultado_clientes)) {
     $dado[] = $row_clientes["telefone"];
     $dado[] = $row_clientes["celular"];
     $dado[] = $row_clientes["email"];
-    $btn_excluir = "<button type='button' class='btn btn-danger ml-3' data-toggle='modal' data-target='#modalExcluirCliente".$row_clientes["id"]."'><i class='fas fa-trash-alt'></i>";
-    $dado[] = $btn_excluir;
+    $btn_excluir = "<button type='button' class='btn btn-danger ml-3' data-toggle='modal' data-target='#modalExcluirCliente".$row_clientes["id"]."'><i class='fas fa-trash-alt'></i>";      
+    $btn_visualizar="<button type='button' class='btn btn-secondary ml-3' data-toggle='modal' data-target='#modalVisualizarCliente".$row_clientes["id"]."'><i class='fas fa-search'></i>";
+    $dado[] = $btn_visualizar . $btn_excluir;
     $dados[] = $dado;
 }
 

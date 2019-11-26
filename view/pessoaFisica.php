@@ -83,8 +83,8 @@
             <input type="text" class="form-control" id="inputTelefone"name="inputTelefone" placeholder="">
         </div>
         <div class="form-group col-md-4">
-            <label for="inputNumero">Celular</label>
-            <input type="text" class="form-control" id="inputNumero" name="inputNumero" placeholder="">
+            <label for="inputCelular">Celular</label>
+            <input type="text" class="form-control" id="inputCelular" name="inputCelular" placeholder="">
         </div>
         <div class="form-group col-md-4">
             <label for="inputRecado">Telefone para recado</label>

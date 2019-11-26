@@ -96,23 +96,44 @@ echo'
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">CHUPA PEDRO</h5>
+        <h5 class="modal-title" id="exampleModalLabel">ARTHUR NÃO SABE FAZER BANCO DE DADOS!</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        CONSEGUI PORRA, VAI TOMAR NO CU//
-        '.$row_clientes["nome"].' << nome do cliente
-
+        Deseja realmente excluir o cliente "'.$row_clientes["nome"].'"?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Salvar mudanças</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <a href="../model/cliente/remove.php?id='.$row_clientes["id"].'" type="submti" class="btn btn-danger" >Excluir</a>     
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalVisualizarCliente'.$row_clientes["id"].'" tabindex="-1" role="dialog" aria-labelledby=modalExcluirCliente'.$row_clientes["nome"].'" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ARTHUR NÃO SABE FAZER BANCO DE DADOS!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Visualizar os dados do cliente "'.$row_clientes["nome"].'"?
+      </div>
+      <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <a href="visualizarCliente.php?id='.$row_clientes["id"].'&status='.$row_clientes["status"].'" type="submti" class="btn btn-primary" >Visualizar</a>     
       </div>
     </div>
   </div>
 </div>';
+
+
+
 }
 
 include('footer.php');

@@ -119,7 +119,7 @@ echo'
                     <input type="text" class="form-control" name="nomeAcao" required>     
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" name="idAcao" value=value="'.$row_clientes["id"].'">
+                    <input type="hidden" name="idAcao" value="'.$row_clientes["id"].'">
                     <button type="submit" name="btn-altera" class="btn btn-primary">Alterar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                 </div>
@@ -141,7 +141,7 @@ echo'
                         <p>Você tem certeza que deseja excluir "'.$row_clientes["nome"].'"?.</p>    
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="idAcao" value=value="'.$row_clientes["id"].'">
+                        <input type="hidden" name="idAcao" value="'.$row_clientes["id"].'">
                         <button type="submit" name="btn-remove" class="btn btn-primary">Excluir</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                     </div>
@@ -165,7 +165,7 @@ echo'
                         é necessário primeiramente remover os cadastros que estão vinculados!</p>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="idAcao" value=value="'.$row_clientes["id"].'">
+                        <input type="hidden" name="idAcao" value="'.$row_clientes["id"].'">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                     </div>
             </div>
