@@ -1,17 +1,17 @@
 <?php
-include_once("../model/conexao.php");
 session_start();
+include_once('../model/conexao.php');
 if (!isset($_SESSION['user']) && !isset($_SESSION['pass'])) {
     header('Location: ../view/index.html');
 }
+    $id = mysqli_real_escape_string($conn, $_SESSION['escritorio_id']);
+    $iduser = mysqli_real_escape_string($conn, $_SESSION['id_user']);
 ?>
 
 <?php
 include('header.php');
-
-include_once "../model/conexao.php";
 ?>
-<script type="text/javascript" src="../js/buscaTipoAcao.js"></script>
+<link rel="stylesheet" href="../datatables/css/datatables.css">
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -59,138 +59,21 @@ include_once "../model/conexao.php";
             <form action="../model/tipo_acao/funcoesTipoAcao.php" method="post">
                 <div class="form-row mt-5">
                     <div class="form-group col-md-9 col-sm-12 col-12">
-                        <input class="form-control" id="inputAcao" placeholder="Nome do tipo da ação" name="nomeAcao" onkeyup="buscarTipoAcao(this.value)"required>
+                        <input class="form-control" id="inputAcao" placeholder="Nome do tipo da ação" name="nomeAcao" required>
                     </div>
                     <div class="col-md-3 col-sm-6 col-6">
                         <button type="submit" name="btn-insere" class="btn btn-primary btn-block">Incluir</button>
                     </div>
-               
-                <script>
-                    $(document).ready(function () {
-                        $('input').keypress(function (e) {
-                                var code = null;
-                                code = (e.keyCode ? e.keyCode : e.which);                
-                                return (code == 13) ? false : true;
-                        });
-                    });
-                </script>
 
             </form>
-            <div class="table-responsive" id="resultado">
-                <table class="table table-hover  mt-5 rounded">
-                    <thead>
+            <div class="table-responsive">
+                <table class="table table-hover  mt-5 rounded" id="listar_clientes">
+                    <thead class="thead-dark">
                         <tr>
-                            <th scope="col" class="bg-dark text-light">Nome</th>
-                            <th width="30" scope="col" class="bg-dark text-light"></th>
-                            <th width="30" scope="col" class="bg-dark text-light"></th>
+                            <th>Nome</th>
+                            <th width="120">Ações</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php
-                        include("../model/conexao.php");
-                        include("../model/tipo_acao/consulta.php");
-                        global $result;
-                        while ($dados = mysqli_fetch_array($result)) :
-                            ?>
-                            <tr>
-                                <td><?php echo $dados['nome']; ?></td>
-                                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAcaoAlterar<?php echo $dados['id']; ?>" data-whatever="<?php echo $dados['nome']; ?>" title="Alterar"><i class="fas fa-pencil-alt"></i></td>
-                                <?php
-                                    $id = mysqli_real_escape_string($conn, $dados['id']);
-                                    $query1 = "SELECT * FROM atendimento WHERE atendimento.tipoacao_id = '$id'";
-                                    $result1 = mysqli_query($conn, $query1);
-
-                                    $query2 = "SELECT * FROM processo WHERE processo.tipo_acao_id = '$id'";
-                                    $result2 = mysqli_query($conn, $query2);
-                                    if (mysqli_num_rows($result1) > 0 or mysqli_num_rows($result2) > 0) : ?>
-                                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAcaoNao<?php echo $dados['id']; ?>" title="Excluir"><i class="fas fa-trash-alt"></i></td>
-                                <?php
-                                    else : ?>
-                                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAcao<?php echo $dados['id']; ?>" title="Excluir"><i class="fas fa-trash-alt"></i></td>
-                                <?php endif; ?>
-
-                                <!-- Modal Exclusão-->
-                                <div class="modal fade" id="modalAcao<?php echo $dados['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Excluir</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Você tem certeza que deseja excluir "<?php echo $dados['nome']; ?>"?</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <form action="../model/tipo_acao/remove.php" method="POST">
-                                                    <input type="hidden" name="idAcao" value="<?php echo $dados['id']; ?>">
-                                                    <button type="submit" name="btn-remove" class="btn btn-primary">Excluir</button>
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Modal Alteração-->
-                                <div class="modal fade" id="modalAcaoAlterar<?php echo $dados['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Alterar</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <form action="../model/tipo_acao/altera.php" method="POST">
-                                                <div class="modal-body">
-                                                    <p>Faça as devidas alterações abaixo</p>
-                                                    <input type="text" class="form-control" name="nomeAcao" required>
-                                                    <script>
-                                                        $('#modalAcaoAlterar<?php echo $dados['id']; ?>').on('show.bs.modal', function(event) {
-                                                            var button = $(event.relatedTarget) // Botão que acionou o modal
-                                                            var recipient = button.data('whatever') // Extrai informação dos atributos data-*
-                                                            // Se necessário, você pode iniciar uma requisição AJAX aqui e, então, fazer a atualização em um callback.
-                                                            // Atualiza o conteúdo do modal. Nós vamos usar jQuery, aqui. No entanto, você poderia usar uma biblioteca de data binding ou outros métodos.
-                                                            var modal = $(this)
-                                                            modal.find('.modal-body input').val(recipient)
-                                                        })
-                                                    </script>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <input type="hidden" name="idAcao" value="<?php echo $dados['id']; ?>">
-                                                    <button type="submit" name="btn-altera" class="btn btn-primary">Alterar</button>
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Modal Não Exclusão-->
-                                <div class="modal fade" id="modalAcaoNao<?php echo $dados['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Impossível excluir</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Desculpe, mas o tribunal "<?php echo $dados['nome']; ?>" está sendo utilizado em um processo.
-                                                    Para que você possa excluir "<?php echo $dados['nome']; ?>"", é necessário primeiramente remover os cadastros que estão
-                                                    vinculados!</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </tr>
-                        <?php endwhile; ?>
-                    </tbody>
                 </table>
             </div>
         </div>
@@ -199,6 +82,95 @@ include_once "../model/conexao.php";
 </div>
 <!-- /.content-wrapper -->
 
+<script src="../datatables/js/datatables.js"></script>
+<script src="../datatables/js/datatables_b.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#listar_clientes').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "../model/tipo_acao/consulta.php",
+            "type": "POST"
+        },
+    });
+} );
+</script>
+
 <?php
+
+$result_clientes = "SELECT * FROM tipo_acao WHERE tipo_acao.escritorio_id = '$id'";
+$resultado_clientes = mysqli_query($conn, $result_clientes);
+while ($row_clientes = mysqli_fetch_array($resultado_clientes)) {
+echo'
+<div class="modal fade" id="modalAlterar'.$row_clientes["id"].'" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Alterar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="../model/tipo_acao/altera.php" method="POST">
+                <div class="modal-body">
+                    <p>Preencha o campo abaixo com o novo nome para "'.$row_clientes["nome"].'".</p>
+                    <input type="text" class="form-control" name="nomeAcao" required>     
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="idAcao" value=value="'.$row_clientes["id"].'">
+                    <button type="submit" name="btn-altera" class="btn btn-primary">Alterar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalExcluir'.$row_clientes["id"].'" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Excluir</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="../model/tipo_acao/remove.php" method="POST">
+                    <div class="modal-body">
+                        <p>Você tem certeza que deseja excluir "'.$row_clientes["nome"].'"?.</p>    
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="idAcao" value=value="'.$row_clientes["id"].'">
+                        <button type="submit" name="btn-remove" class="btn btn-primary">Excluir</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="modalNaoExcluir'.$row_clientes["id"].'" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Impossível excluir</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <div class="modal-body">
+                        <p>Desculpe, mas o tipo da ação "'.$row_clientes["nome"].'" está sendo utilizado
+                        em um atendimento ou processo. Para que você possa excluir "'.$row_clientes["nome"].'",
+                        é necessário primeiramente remover os cadastros que estão vinculados!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="idAcao" value=value="'.$row_clientes["id"].'">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+            </div>
+        </div>
+    </div>';
+    }
 include('footer.php');
 ?>

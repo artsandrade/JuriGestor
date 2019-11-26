@@ -1,5 +1,10 @@
 <?php
+session_start();
 include('header.php');
+include_once('../model/conexao.php');
+
+    $id = mysqli_real_escape_string($conn, $_SESSION['escritorio_id']);
+    $iduser = mysqli_real_escape_string($conn, $_SESSION['id_user']);
 ?>
 
 <link rel="stylesheet" href="../datatables/css/datatables.css">
@@ -81,7 +86,34 @@ $(document).ready(function() {
     });
 } );
 </script>
-
 <?php
+
+$result_clientes = "SELECT * FROM cliente WHERE escritorio_id = '$id'";
+$resultado_clientes = mysqli_query($conn, $result_clientes);
+while ($row_clientes = mysqli_fetch_array($resultado_clientes)) {
+echo'
+<div class="modal fade" id="modalExcluirCliente'.$row_clientes["id"].'" tabindex="-1" role="dialog" aria-labelledby=modalExcluirCliente'.$row_clientes["nome"].'" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">CHUPA PEDRO</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        CONSEGUI PORRA, VAI TOMAR NO CU//
+        '.$row_clientes["nome"].' << nome do cliente
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary">Salvar mudanças</button>
+      </div>
+    </div>
+  </div>
+</div>';
+}
+
 include('footer.php');
 ?>

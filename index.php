@@ -34,7 +34,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
                     </div>
-                    <input type="text" name="pass" class="form-control" placeholder="Senha" aria-label="Username" aria-describedby="basic-addon1">
+                    <input type="password" name="pass" class="form-control" placeholder="Senha" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
 
                 <div class="row mt-4">

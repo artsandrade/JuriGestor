@@ -9,7 +9,7 @@ if(isset($_POST['btn-remove'])){
         $query = "DELETE FROM atendimento WHERE id = '$id'";
         $result = mysqli_query($conn, $query);
 
-        header('Location: ../../view/atendimentoConsultar.php?sucesso');
+        header('Location: ../../view/atendimentoConsultar.php');
         
 } 
 ?>
