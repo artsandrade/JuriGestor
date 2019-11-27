@@ -1,21 +1,29 @@
 <?php
-include('header.php');
-include('../model/conexao.php');
+session_start();
+include_once('../model/conexao.php');
+if (!isset($_SESSION['user']) && !isset($_SESSION['pass'])) {
+    header('Location: ../view/index.html');
+}
+    $id = mysqli_real_escape_string($conn, $_SESSION['escritorio_id']);
+    $iduser = mysqli_real_escape_string($conn, $_SESSION['id_user']);
 ?>
 
-
+<?php
+include('header.php');
+?>
+<link rel="stylesheet" href="../datatables/css/datatables.css">
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <section class="content-header"></section>
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Consulta de Processos</h1>
+                    <h1>Consultar processos</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Processos</a></li>
-                        <li class="breadcrumb-item active">Consulta</li>
+                        <li class="breadcrumb-item active">Consultar</li>
                     </ol>
                 </div>
             </div>
@@ -25,63 +33,78 @@ include('../model/conexao.php');
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            
-            <form method="POST">
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="inputFiltro">Filtro</label>
-                        <select id="inputFiltro" class="form-control" name="inputFiltro">
-                            <option selected value="0">Nome do cliente</option>
-                            <option value="1">CPF</option>
-                            <option value="2">CNPJ</option>
-                            <option value="3">Número do processo</option> 
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="inputCampoDigitado">&nbsp;</label>
-                        <input type="text" class="form-control" id="inputCampoDigitado" name="inputCampoDigitado">
-                    </div>
-                </div>
-                <button class="btn btn-primary float-right" formaction="../model/processos/consulta.php">Pesquisar</button>
-            </form>
             <div class="table-responsive">
-                <table class="table table-hover  mt-5 rounded">
+                <table class="table table-hover  mt-5 rounded" id="listar_clientes">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Cliente</th>
+                            <th>Nome da ação</th>
                             <th>Número do processo</th>
                             <th>Situação</th>
                             <th>Polo</th>
+                            <th>Ações</th>
+                        </tr>
                     </thead>
-                    <tbody>
-                    <?php 
-                        $sql = "SELECT * FROM processo ";
-                        $query = mysqli_query($conn, $sql);
-
-                        while ($dados = mysqli_fetch_array($query)) {
-                        echo"
-                        <tr>
-                            <td></td>
-                            <td>$dados[num_processo]</td>
-                            <td>$dados[situacao]</td>
-                            <td>$dados[polo]</td>
-                        </tr>";
-                        }
-                    ?>                  
-                    </tbody>
                 </table>
             </div>
-            <!-- Page Content -->
-            <!-- <h1>Blank Page</h1>
-        <hr>
-        <p>This is a great starting point for new custom pages.</p> -->
         </div>
-        <!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
+
+<script src="../datatables/js/datatables.js"></script>
+<script src="../datatables/js/datatables_b.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#listar_clientes').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "../model/processos/consultar.php",
+            "type": "POST"
+        },
+    });
+} );
+</script>
 
 <?php
+
+$result_clientes = "SELECT * FROM processo ";
+$resultado_clientes = mysqli_query($conn, $result_clientes);
+while ($row_clientes = mysqli_fetch_array($resultado_clientes)) {
+echo'
+<div class="modal fade" id="modalVisualizar'.$row_clientes["id"].'" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Visualizar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+           
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalExcluir'.$row_clientes["id"].'" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Excluir</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        <form action="../model/processos/remove.php" method="POST">
+            <div class="modal-body">
+                <p>Você tem certeza que deseja excluir o processo de nº "'.$row_clientes["num_processo"].'"?.</p>    
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" name="idProcesso" value="'.$row_clientes["id"].'">
+                <button type="submit" name="btn-remove" class="btn btn-primary">Excluir</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+        </form>
+    </div>
+</div>';
+    }
 include('footer.php');
 ?>

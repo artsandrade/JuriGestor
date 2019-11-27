@@ -12,9 +12,11 @@
         <div class="form-group col-md-3">
             <label for="inputEstadoCivil">Estado Civil</label>
             <select id="inputEstadoCivil" name="inputEstadoCivil" class="form-control">
-                <option>Solteiro</option>
                 <option>Casado</option>
-                <option>Viuvo</option>
+                <option>Divorciado</option>
+                <option>Separado</option>
+                <option>Solteiro</option>
+                <option>Viúvo</option>
             </select>
         </div>
     </div>

@@ -46,13 +46,23 @@ $btn_visualizar="<button type='button' class='btn btn-secondary ml-3' data-toggl
 // Ler e criar o array de dados
 $dados = array();
 while ($row_clientes = mysqli_fetch_array($resultado_clientes)) {
+    $idcliente = $row_clientes["id"];
     $dado = array();
     $dado[] = $row_clientes["nome"];
     $dado[] = $row_clientes["telefone"];
     $dado[] = $row_clientes["celular"];
-    $dado[] = $row_clientes["email"];
-    $btn_excluir = "<button type='button' class='btn btn-danger ml-3' data-toggle='modal' data-target='#modalExcluirCliente".$row_clientes["id"]."'><i class='fas fa-trash-alt'></i>";      
-    $btn_visualizar="<button type='button' class='btn btn-secondary ml-3' data-toggle='modal' data-target='#modalVisualizarCliente".$row_clientes["id"]."'><i class='fas fa-search'></i>";
+    $dado[] = $row_clientes["email"];      
+    $btn_visualizar="<button type='button' class='btn btn-secondary ml-3' data-toggle='modal' data-target='#modalVisualizarCliente".$row_clientes["id"]."' title='Visualizar'><i class='fas fa-eye'></i>";
+    $query1 = "SELECT * FROM atendimento WHERE atendimento.cliente_id = '$idcliente'";
+    $result1 = mysqli_query($conn, $query1);
+    $query2 = "SELECT * FROM processo WHERE processo.cliente_id = '$idcliente'";
+    $result2 = mysqli_query($conn, $query2);
+    if (mysqli_num_rows($result1) > 0 or mysqli_num_rows($result2) > 0){
+        $btn_excluir = "<button type='button' class='btn btn-danger ml-3' data-toggle='modal' data-target='#modalNaoExcluir".$row_clientes["id"]."' title='Excluir'><i class='fas fa-trash-alt'></i>";
+    }                  
+    else{
+        $btn_excluir = "<button type='button' class='btn btn-danger ml-3' data-toggle='modal' data-target='#modalExcluir".$row_clientes["id"]."' title='Excluir'><i class='fas fa-trash-alt'></i>";
+    }
     $dado[] = $btn_visualizar . $btn_excluir;
     $dados[] = $dado;
 }

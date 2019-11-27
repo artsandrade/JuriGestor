@@ -1,7 +1,16 @@
 <?php
+session_start();
+include_once('../model/conexao.php');
+if (!isset($_SESSION['user']) && !isset($_SESSION['pass'])) {
+    header('Location: ../view/index.html');
+}
+    $id = mysqli_real_escape_string($conn, $_SESSION['escritorio_id']);
+    $iduser = mysqli_real_escape_string($conn, $_SESSION['id_user']);
+?>
+
+<?php
 
 include('header.php');
-include('../model/conexao.php');
 
 ?>
 <script src="../js/select2.full.min.js"></script>
@@ -25,16 +34,16 @@ include('../model/conexao.php');
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <section class="content-header"></section>
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Cadastro de processos</h1>
+                    <h1>Cadastrar processo</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Processos</a></li>
-                        <li class="breadcrumb-item active">Cadastro</li>
+                        <li class="breadcrumb-item active">Cadastrar</li>
                     </ol>
                 </div>
             </div>
@@ -50,18 +59,18 @@ include('../model/conexao.php');
                 <div class="form-row mt-5">
                     <div class="col-md-7 col-sm-12 col-12">
                         <label for="inputNumeroProcesso">Número do processo</label>
-                        <input type="text" class="form-control" id="inputNomeProcesso" name="inputNomeProcesso">
+                        <input type="text" class="form-control" id="inputNomeProcesso" name="inputNomeProcesso" required>
                     </div>
                    
                 </div>
                 <div class="form-row mt-3">
                     <div class="form-group col-md-7">
                         <label for="inputNomeAcao">Nome da ação</label>
-                        <input type="text" id="inputNomeAcao" class="form-control" name="inputNomeAcao"> 
+                        <input type="text" id="inputNomeAcao" class="form-control" name="inputNomeAcao" required> 
                     </div>
                     <div class="form-group col-md-3">
                         <label for="inputValorCausa">Valor da causa</label>
-                        <input type="text" id="inputValorCausa" class="form-control" name="inputValorCausa">
+                        <input type="text" id="inputValorCausa" class="form-control" name="inputValorCausa" required>
                     </div>
                 </div>
                 <div class="form-row mt-1">
@@ -97,20 +106,30 @@ include('../model/conexao.php');
                     <div class="form-group col-md-4">
                         <label for="inputTipoAcao">Tipo da ação</label>
                         <select name="inputTipoAcao" class="form-control" id="inputTipoAcao">
-                            <option >Ação trabalhista</option>
-                            <option >Ação sem causa</option>
+                            <?php
+                                $sql = "SELECT * FROM tipo_acao WHERE escritorio_id = $id order by nome";
+                                $consulta = mysqli_query($conn, $sql);
+                                while ($dados = mysqli_fetch_assoc($consulta)) {
+                                    echo "<option value='".$dados['id']."'>".$dados['nome']."</option>";
+                                }
+                            ?>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="inputOrgaoJudiciario">Órgão judiciário</label>
+                        <label for="inputOrgaoJudiciario">Tribunal</label>
                         <select name="inputOrgaoJudiciario" class="form-control" id="inputOrgaoJudiciario">
-                            <option >Superior tribunal de Campinas</option>
-                            <option >blu</option>
+                            <?php
+                                $sql = "SELECT * FROM tribunal WHERE escritorio_id = $id order by nome";
+                                $consulta = mysqli_query($conn, $sql);
+                                while ($dados = mysqli_fetch_assoc($consulta)) {
+                                    echo "<option value='".$dados['id']."'>".$dados['nome']."</option>";
+                                }
+                            ?>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="inputComarca">Comarca</label>
-                        <input type="text" class="form-control" id="inputComarca" name="inputComarca">
+                        <input type="text" class="form-control" id="inputComarca" name="inputComarca" required>
                     </div>
                 </div>
                 <div class="form-row mt-1">
