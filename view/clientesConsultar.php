@@ -2,7 +2,6 @@
 session_start();
 include('header.php');
 include_once('../model/conexao.php');
-
     $id = mysqli_real_escape_string($conn, $_SESSION['escritorio_id']);
     $iduser = mysqli_real_escape_string($conn, $_SESSION['id_user']);
 ?>
@@ -11,16 +10,16 @@ include_once('../model/conexao.php');
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header"></section>
+    <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Consultar clientes</h1>
+                    <h1>Consulta de Clientes</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Clientes</a></li>
-                        <li class="breadcrumb-item active">Consultar</li>
+                        <li class="breadcrumb-item active">Consulta</li>
                     </ol>
                 </div>
             </div>
@@ -87,61 +86,34 @@ $(document).ready(function() {
 } );
 </script>
 <?php
-
 $result_clientes = "SELECT * FROM cliente WHERE escritorio_id = '$id'";
 $resultado_clientes = mysqli_query($conn, $result_clientes);
 while ($row_clientes = mysqli_fetch_array($resultado_clientes)) {
 echo'
-<div class="modal fade" id="modalExcluir'.$row_clientes["id"].'" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Excluir</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="../model/atendimento/remove.php" method="POST">
-                    <div class="modal-body">
-                        <p>Você tem certeza que deseja excluir o cliente "'.$row_clientes["nome"].'"?</p>    
-                    </div>
-                    <div class="modal-footer">
-                        <input type="hidden" name="idAtendimento" value="'.$row_clientes["id"].'">
-                        <a href="../model/cliente/remove.php?id='.$row_clientes["id"].'" type="submti" class="btn btn-primary" >Excluir</a>     
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+<div class="modal fade" id="modalExcluirCliente'.$row_clientes["id"].'" tabindex="-1" role="dialog" aria-labelledby=modalExcluirCliente'.$row_clientes["nome"].'" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ARTHUR NÃO SABE FAZER BANCO DE DADOS!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Deseja realmente excluir o cliente "'.$row_clientes["nome"].'"?
+      </div>
+      <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <a href="../model/cliente/remove.php?id='.$row_clientes["id"].'" type="submti" class="btn btn-danger" >Excluir</a>     
+      </div>
     </div>
-    
-    <div class="modal fade" id="modalNaoExcluir'.$row_clientes["id"].'" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Impossível excluir</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                    <div class="modal-body">
-                        <p>Desculpe, mas o cliente "'.$row_clientes["nome"].'" está sendo vinculado
-                        a um atendimento ou processo. Para que você possa excluí-lo,
-                        é necessário primeiramente remover os cadastros que estão vinculados!</p>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="hidden" name="idAcao" value="'.$row_clientes["id"].'">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    </div>
-            </div>
-        </div>
-    </div>
-
+  </div>
+</div>
 <div class="modal fade" id="modalVisualizarCliente'.$row_clientes["id"].'" tabindex="-1" role="dialog" aria-labelledby=modalExcluirCliente'.$row_clientes["nome"].'" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Visualizar</h5>
+        <h5 class="modal-title" id="exampleModalLabel">ARTHUR NÃO SABE FAZER BANCO DE DADOS!</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -150,16 +122,12 @@ echo'
         Visualizar os dados do cliente "'.$row_clientes["nome"].'"?
       </div>
       <div class="modal-footer">
-            <a href="visualizarCliente.php?id='.$row_clientes["id"].'&status='.$row_clientes["status"].'" type="submti" class="btn btn-primary" >Visualizar</a>     
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <a href="visualizarCliente.php?id='.$row_clientes["id"].'&status='.$row_clientes["status"].'" type="submti" class="btn btn-primary" >Visualizar</a>     
       </div>
     </div>
   </div>
 </div>';
-
-
-
 }
-
 include('footer.php');
 ?>

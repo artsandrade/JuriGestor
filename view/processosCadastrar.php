@@ -25,6 +25,11 @@ include('header.php');
             theme: 'bootstrap4'
         });
 
+        $('.select3').select2({
+            maximumSelectionLength: 1,
+            theme: 'bootstrap4'
+        });
+
     });
 
 
@@ -160,7 +165,7 @@ include('header.php');
                 <div class="col-md-8">
                         <div class="form-group">
                             <label for="inputClientes">Cliente</label>
-                            <select class="select2 form-control" name="inputClientes[]" id="inputClientes"
+                            <select class="select3 form-control" name="inputClientes" id="inputClientes"
                                 multiple="multiple" style="width: 100%;" >
                                 <?php 
                                     $sql = "SELECT * FROM cliente";
@@ -182,7 +187,15 @@ include('header.php');
                             <label for="inputAdvogados">Advogados</label>
                             <select class="select2 form-control" name="inputAdvogados[]" id="inputAdvogados"
                                 multiple="multiple" style="width: 100%;">
-                                <option>Arthur</option>
+                                <?php 
+                                    $sql = "SELECT * FROM advogado";
+                                    $consulta = mysqli_query($conn, $sql);
+
+                                    while ($dados = mysqli_fetch_assoc($consulta)) {
+
+                                        echo "<option>" . $dados['nome'] . "</option>";
+                                    }
+                                    ?>
                                 
                             </select>
                         </div>
@@ -236,7 +249,7 @@ include('header.php');
                 
                 <div class="mt-3 pb-5">
                     <button class="btn btn-primary float-right" formaction="../model/processos/insere.php">Cadastrar</button>
-                    <button class="btn btn-danger float-left">Limpar</button>
+                    <button class="btn btn-danger float-left">Cancelar</button>
                 </div>
                 </div>
             </div>
