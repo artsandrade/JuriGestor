@@ -40,14 +40,14 @@ while ($row_clientes = mysqli_fetch_array($resultado_clientes)) {
     $idtribunal = $row_clientes["id"];
     $dado = array();
     $dado[] = $row_clientes["nome"];
-    $btn_alterar = "<button type='button' class='btn btn-primary ml-3' data-toggle='modal' data-target='#modalAlterar".$row_clientes["id"]."'><i class='fas fa-pencil-alt'></i>";
+    $btn_alterar = "<button type='button' class='btn btn-primary ml-3' data-toggle='modal' data-target='#modalAlterar".$row_clientes["id"]."' title='Alterar'><i class='fas fa-pencil-alt'></i>";
     $query2 = "SELECT * FROM processo WHERE processo.tribunal_id = '$idtribunal'";
     $result2 = mysqli_query($conn, $query2);
     if (mysqli_num_rows($result2) > 0){
-        $btn_excluir = "<button type='button' class='btn btn-danger ml-3' data-toggle='modal' data-target='#modalNaoExcluir".$row_clientes["id"]."'><i class='fas fa-trash-alt'></i>";
+        $btn_excluir = "<button type='button' class='btn btn-danger ml-3' data-toggle='modal' data-target='#modalNaoExcluir".$row_clientes["id"]."' title='Excluir'><i class='fas fa-trash-alt'></i>";
     }                  
     else{
-        $btn_excluir = "<button type='button' class='btn btn-danger ml-3' data-toggle='modal' data-target='#modalExcluir".$row_clientes["id"]."'><i class='fas fa-trash-alt'></i>";
+        $btn_excluir = "<button type='button' class='btn btn-danger ml-3' data-toggle='modal' data-target='#modalExcluir".$row_clientes["id"]."' title='Excluir'><i class='fas fa-trash-alt'></i>";
     }
     $dado[] = $btn_alterar . $btn_excluir;
     $dados[] = $dado;

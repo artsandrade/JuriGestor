@@ -57,7 +57,7 @@ include_once "../model/conexao.php";
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <form action="../model/atendimento/insere.php" method="POST" name="formulario">
+            <form action="../model/atendimento/altera.php" method="POST" name="formulario">
                 <div class="form-row mt-5">
                     <div class="form-group col-md-7 col-sm-12 col-12">
                         <label for="inputCliente">Cliente</label>
@@ -68,13 +68,17 @@ include_once "../model/conexao.php";
                         <select class="form-control" id="idtipoacao" name="idtipoacao">
                             <?php
                             include("../model/conexao.php");
-                            include("../model/tipo_acao/consulta.php");
+                            include("../model/tipo_acao/consultaNomes.php");
                             global $result;
                             while ($dados = mysqli_fetch_array($result)) :
+                                if($dados['id']==$_SESSION['atendimentoIdTipoAcao']):
                                 ?>
-                                <option value="<?php echo $dados['id']; ?>"><?php echo $dados['nome']; ?></option>
-                            <?php endwhile; ?>
+                                    <option value="<?php echo $dados['id']; ?>" selected><?php echo $dados['nome']; ?></option>
+                                <?php else:?>
+                                    <option value="<?php echo $dados['id']; ?>"><?php echo $dados['nome']; ?></option>
+                            <?php endif; endwhile; ?>
                         </select>
+
                     </div>
                     <div class="form-group col-md-12 col-sm-12 col-12">
                         <label for="inputRelato">Relato</label>
@@ -84,7 +88,8 @@ include_once "../model/conexao.php";
                         <button class="btn btn-danger" data-toggle="modal" data-target="#modalLimpar" title="Limpar campos">Limpar</button>
                     </div>
                     <div class="form-group mt-5">
-                        <button type="submit" name="btn-insere" class="btn btn-primary">Cadastrar</button> 
+                        <input type="hidden" id="idAtendimento" name="idAtendimento" value="<?php echo $_SESSION['atendimentoId'];?>">
+                        <button type="submit" name="btn-altera" class="btn btn-primary">Editar</button> 
                     </div>
                 </div>
             </form>

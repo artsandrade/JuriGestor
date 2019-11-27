@@ -62,7 +62,7 @@ include_once "../model/conexao.php";
                         <select class="form-control" id="idcliente" name="idcliente">
                             <?php
                             include("../model/conexao.php");
-                            include("../model/cliente/consulta.php");
+                            include("../model/cliente/consultaNomes.php");
                             global $result;
                             while ($dados = mysqli_fetch_array($result)) :
                                 ?>
@@ -76,7 +76,7 @@ include_once "../model/conexao.php";
                         <select class="form-control" id="idtipoacao" name="idtipoacao">
                             <?php
                             include("../model/conexao.php");
-                            include("../model/tipo_acao/consulta.php");
+                            include("../model/tipo_acao/consultaNomes.php");
                             global $result;
                             while ($dados = mysqli_fetch_array($result)) :
                                 ?>
