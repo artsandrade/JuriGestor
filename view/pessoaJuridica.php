@@ -1,72 +1,72 @@
-<form action="" id="pj" class="mt-5" style="display: none;">
+<form action="" id="pj" class="mt-5" style="display: none;" method="POST">
 
     <div class="form-row mt-1">
         <div class="form-group col-md-6">
             <label for="inputNomeFantasia">Nome fantasia</label>
-            <input type="text" class="form-control" id="inputNomeFantasia" placeholder="">
+            <input type="text" class="form-control" id="inputNomeFantasia" placeholder="" name="inputNomeFantasia"> 
         </div>
         <div class="form-group col-md-3">
             <label for="inputCnpj">CNPJ</label>
-            <input type="text" class="form-control" id="inputCnpj" placeholder="">
+            <input type="text" class="form-control" id="inputCnpj" placeholder="" name="inputCnpj">
         </div>
         <div class="form-group col-md-3">
             <label for="inputInscricaoEstadual">Inscrição Estadual</label>
-            <input type="text" class="form-control" id="inputInscricaoEstadual" placeholder="">
+            <input type="text" class="form-control" id="inputInscricaoEstadual" placeholder="" name="inputInscricaoEstadual">
         </div>
     </div>
     <div class="form-row mt-1">
         <div class="form-group col-md-6">
             <label for="inputEndereco2">Endereco</label>
-            <input type="text" class="form-control" id="inputEndereco2" placeholder="">
+            <input type="text" class="form-control" id="inputEndereco2" placeholder="" name="inputEndereco2">
         </div>
         <div class="form-group col-md-3">
             <label for="inputNumero2">Número</label>
-            <input type="text" class="form-control" id="inputNumero2" placeholder="">
+            <input type="text" class="form-control" id="inputNumero2" placeholder="" name="inputNumero2">
         </div>
         <div class="form-group col-md-3">
             <label for="inputComplemento2">Complemento</label>
-            <input type="text" class="form-control" id="inputComplemento2" placeholder="">
+            <input type="text" class="form-control" id="inputComplemento2" placeholder="" name="inputComplemento2">
         </div>
     </div>
     <div class="form-row mt-1">
         <div class="form-group col-md-6">
             <label for="inputBairro">Bairro</label>
-            <input type="text" class="form-control" id="inputBairro" placeholder="">
+            <input type="text" class="form-control" id="inputBairro" placeholder="" name="inputBairro">
         </div>
         <div class="form-group col-md-3">
             <label for="inputEstado">Estado</label>
-            <input type="text" class="form-control" id="inputEstado" placeholder="">
+            <input type="text" class="form-control" id="inputEstado" placeholder="" name="inputEstado">
         </div>
         <div class="form-group col-md-3">
             <label for="inputCidade">Cidade</label>
-            <input type="text" class="form-control" id="inputCidade" placeholder="">
+            <input type="text" class="form-control" id="inputCidade" placeholder="" name="inputCidade">
         </div>
     </div>
     <div class="form-row mt-1">
         <div class="form-group col-md-4">
             <label for="inputTelefone2">Telefone</label>
-            <input type="text" class="form-control" id="inputTelefone2" placeholder="">
+            <input type="text" class="form-control" id="inputTelefone2" placeholder="" name="inputTelefone2">
         </div>
         <div class="form-group col-md-4">
-            <label for="inputNumero2">Celular</label>
-            <input type="text" class="form-control" id="inputNumero2" placeholder="">
+            <label for="inputCelular2">Celular</label>
+            <input type="text" class="form-control" id="inputCelular2" placeholder="" name="inputCelular2">
         </div>
         <div class="form-group col-md-4">
             <label for="inputRecado2">Telefone para recado</label>
-            <input type="text" class="form-control" id="inputRecado2" placeholder="">
+            <input type="text" class="form-control" id="inputRecado2" placeholder="" name="inputRecado2">
         </div>
     </div>
     <div class="form-row mt-1">
         <div class="form-group col-md-8">
             <label for="inputEmail2">Email</label>
-            <input type="email" class="form-control" id="inputEmail2" placeholder="">
+            <input type="email" class="form-control" id="inputEmail2" placeholder="" name="inputEmail2">
         </div>
     </div>
     <div class="form-row mt-1">
         <div class="col-md-8">
             <div class="form-group">
                 <label for="inputAdvogados2">Advogados</label>
-                <select class="select2 form-control" name= "advogados[]"id="inputAdvogados2" multiple="multiple"
+                <select class="select2 form-control" name= "inputAdvogados2[]"id="inputAdvogados2" multiple="multiple"
                      style="width: 100%;">
                     <option>Arthur</option>
                     <option>Pedro</option>
@@ -79,8 +79,11 @@
             </div>
         </div>
     </div>
+
+
     <hr > 
-    <div class="form-row mt-1">
+
+    <div class="form-row mt-1" id="etapa2" style="display:none;"> 
         <div class="form-group col-md-6">
             <label for="inputNomeCompleto">Nome completo</label>
             <input type="text" class="form-control" id="inputNomeCompleto" placeholder="">
@@ -209,6 +212,6 @@
     <div class="mb-5 pb-3">
         <button class="btn btn-secondary float-right">Incluir responsável</button>
         <button class="btn btn-danger float-left mr-3">Limpar</button>
-        <button class="btn btn-primary float-left">Cadastrar</button>
+        <button class="btn btn-primary float-left" formaction="../model/cliente/insereJuridica.php">Cadastrar</button>
     </div>
 </form>

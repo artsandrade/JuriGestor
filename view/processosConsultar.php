@@ -1,5 +1,6 @@
 <?php
 include('header.php');
+include('../model/conexao.php');
 ?>
 
 
@@ -25,25 +26,23 @@ include('header.php');
     <section class="content">
         <div class="container-fluid">
             
-            <form>
+            <form method="POST">
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputEstado">Filtro</label>
-                        <select id="inputEstado" class="form-control">
-                            <option selected>Nome do cliente</option>
-                            <option>Nome fantasia</option>
-                            <option>CPF</option>
-                            <option>CNPJ</option>
-                            <option>Número do processo</option>
-                            <option>Situação</option>   
+                        <label for="inputFiltro">Filtro</label>
+                        <select id="inputFiltro" class="form-control" name="inputFiltro">
+                            <option selected value="0">Nome do cliente</option>
+                            <option value="1">CPF</option>
+                            <option value="2">CNPJ</option>
+                            <option value="3">Número do processo</option> 
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputCampoDigitado">&nbsp;</label>
-                        <input type="text" class="form-control" id="inputCampoDigitado">
+                        <input type="text" class="form-control" id="inputCampoDigitado" name="inputCampoDigitado">
                     </div>
                 </div>
-                <button class="btn btn-primary float-right">Pesquisar</button>
+                <button class="btn btn-primary float-right" formaction="../model/processos/consulta.php">Pesquisar</button>
             </form>
             <div class="table-responsive">
                 <table class="table table-hover  mt-5 rounded">
@@ -55,25 +54,20 @@ include('header.php');
                             <th>Polo</th>
                     </thead>
                     <tbody>
+                    <?php 
+                        $sql = "SELECT * FROM processo ";
+                        $query = mysqli_query($conn, $sql);
 
+                        while ($dados = mysqli_fetch_array($query)) {
+                        echo"
                         <tr>
-                            <td>Arthur Andrade</td>
-                            <td>2345678</td>
-                            <td>Em andamento</td>
-                            <td>Não sei</td>
-                        </tr>
-                        <tr>
-                            <td>Pedro Henrique</td>
-                            <td>7865432</td>
-                            <td>Arquivado</td>
-                            <td>Não sei também</td>
-                        </tr>
-                        <tr>
-                            <td>Ricardo</td>
-                            <td>9996766</td>
-                            <td>Em andamento</td>
-                            <td>Menos ainda</td>
-                        </tr>
+                            <td></td>
+                            <td>$dados[num_processo]</td>
+                            <td>$dados[situacao]</td>
+                            <td>$dados[polo]</td>
+                        </tr>";
+                        }
+                    ?>                  
                     </tbody>
                 </table>
             </div>
