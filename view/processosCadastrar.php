@@ -11,7 +11,7 @@ include('header.php');
     $(document).ready(function () {
         //Initialize Select2 Elements
         $('.select2').select2({
-            maximumSelectionLength: 3,
+            maximumSelectionLength: 10,
             theme: 'bootstrap4'
         });
 
@@ -136,10 +136,7 @@ include('header.php');
                             <select class="select2 form-control" name="advogados[]" id="inputAdvogados "
                                 multiple="multiple" style="width: 100%;">
                                 <option>Arthur</option>
-                                <option>Pedro</option>
-                                <option>Gabriel</option>
-                                <option>Ricardo</option>
-                                <option>Paulo</option>
+                                
                             </select>
                         </div>
                     </div>
