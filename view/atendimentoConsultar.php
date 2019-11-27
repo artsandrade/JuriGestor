@@ -46,7 +46,7 @@ include('header.php');
                             <th>Cliente</th>
                             <th>Tipo da ação</th>
                             <th>Relato</th>
-                            <th>Ações</th>
+                            <th width="160">Ações</th>
                         </tr>
                     </thead>
                     
@@ -75,33 +75,112 @@ $(document).ready(function() {
 </script>
 
 <?php
-
 $result_clientes = "SELECT * FROM atendimentoView WHERE atendimentoView.escritorio_id = '$id'";
 $resultado_clientes = mysqli_query($conn, $result_clientes);
+
 while ($row_clientes = mysqli_fetch_array($resultado_clientes)) {
+    
 echo'
-<div class="modal fade" id="modalExcluirCliente'.$row_clientes["id"].'" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="modalVisualizar'.$row_clientes["id"].'" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Excluir atendimento</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Visualizar</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                Você tem certeza que deseja excluir o atendimento do cliente '.$row_clientes["cliente"].'?
+                <div class="form-row mt-5">
+                    <div class="form-group col-md-7 col-sm-12 col-12">
+                        <label for="inputCliente">Cliente</label>
+                        <input class="form-control" placeholder="'.$row_clientes["cliente"].'" readonly>
+                    </div>
+                    <div class="form-group col-md-5 col-sm-12 col-12">
+                            <label for="comboTipoAcao">Tipo da ação</label>
+                            <input class="form-control" placeholder="'.$row_clientes["tipoacao"].'" readonly>
+                    </div>
+                    <div class="form-group col-md-12 col-sm-12 col-12">
+                        <label for="inputRelato">Relato</label>
+                        <textarea class="form-control" id="relato" name="relato" rows="4" readonly>'.$row_clientes["relato"].'</textarea>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
-                <form action="../model/atendimento/remove.php" method="POST">
                 <input type="hidden" name="idAtendimento" value="'.$row_clientes["id"].'">
-                <button type="submit" name="btn-remove" class="btn btn-primary">Excluir</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalEditar'.$row_clientes["id"].'" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <p>Você deseja editar o atendimento do cliente '.$row_clientes["cliente"].'?</p>
+            </div>
+            <div class="modal-footer">
+                <form action="../model/atendimento/selecionaAtendimento.php" method="POST">
+                <input type="hidden" name="idAtendimento" value="'.$row_clientes["id"].'">
+                <button type="submit" name="btn-editar" value="'.$row_clientes["id"].'" class="btn btn-primary">Editar</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                 </form>
             </div>
         </div>
     </div>
-</div>';
+</div>
+
+<div class="modal fade" id="modalExcluir'.$row_clientes["id"].'" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Excluir</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="../model/atendimento/remove.php" method="POST">
+                    <div class="modal-body">
+                        <p>Você tem certeza que deseja excluir o atendimento do cliente "'.$row_clientes["cliente"].'"?</p>    
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="idAtendimento" value="'.$row_clientes["id"].'">
+                        <button type="submit" name="btn-remove" class="btn btn-primary">Excluir</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="modalNaoExcluir'.$row_clientes["id"].'" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Impossível excluir</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <div class="modal-body">
+                        <p>Desculpe, mas o atendimento do cliente "'.$row_clientes["cliente"].'" está sendo utilizado
+                        em um processo. Para que você possa excluí-lo,
+                        é necessário primeiramente remover os cadastros que estão vinculados!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="idAcao" value="'.$row_clientes["id"].'">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+            </div>
+        </div>
+    </div>';
 }
 
 include('footer.php');

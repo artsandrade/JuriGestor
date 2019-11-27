@@ -13,8 +13,8 @@ if(!isset($_SESSION))
 
 $columns = array(
     0 => 'dt',
-    1 => 'cliente_id',
-    2 => 'tipoacao_id',
+    1 => 'cliente',
+    2 => 'tipoacao',
     3 => 'relato',
     4 => 'botao'
 );
@@ -43,14 +43,23 @@ $resultado_clientes = mysqli_query($conn, $result_clientes);
 // Ler e criar o array de dados
 $dados = array();
 while ($row_clientes = mysqli_fetch_array($resultado_clientes)) {
+    $idatendimento = $row_clientes["id"];
     $dado = array();
     $dado[] = $row_clientes["dt"];
     $dado[] = $row_clientes["cliente"];
     $dado[] = $row_clientes["tipoacao"];
     $dado[] = substr($row_clientes["relato"], 0, 50);
-    $btn_alterar = "<button type='button' class='btn btn-primary ml-3' value='".$row_clientes["id"]."'><i class='fas fa-pencil-alt'></i>";
-    $btn_excluir = "<button type='button' class='btn btn-danger ml-3' data-toggle='modal' data-target='#modalExcluirCliente".$row_clientes["id"]."'><i class='fas fa-trash-alt'></i>";
-    $dado[] = $btn_alterar . $btn_excluir;
+    $btn_visualizar="<button type='button' class='btn btn-secondary ml-3' data-toggle='modal' data-target='#modalVisualizar".$row_clientes["id"]."' title='Visualizar'><i class='fas fa-eye'></i>";
+    $btn_alterar = "<button type='submit' class='btn btn-primary ml-3' data-toggle='modal' data-target='#modalEditar".$row_clientes["id"]."' title='Alterar'><i class='fas fa-pencil-alt'></i> </form>";
+    $query2 = "SELECT * FROM processo WHERE processo.atendimento_id = '$idatendimento'";
+    $result2 = mysqli_query($conn, $query2);
+    if (mysqli_num_rows($result2) > 0){
+        $btn_excluir = "<button type='button' class='btn btn-danger ml-3' data-toggle='modal' data-target='#modalNaoExcluir".$row_clientes["id"]."' title='Excluir'><i class='fas fa-trash-alt'></i>";
+    }                  
+    else{
+        $btn_excluir = "<button type='button' class='btn btn-danger ml-3' data-toggle='modal' data-target='#modalExcluir".$row_clientes["id"]."' title='Excluir'><i class='fas fa-trash-alt'></i>";
+    }
+    $dado[] = $btn_visualizar . $btn_alterar . $btn_excluir;
     $dados[] = $dado;
 }
 
